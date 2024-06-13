@@ -11,7 +11,7 @@ const Navigation: React.FC = (props) => {
                     <Link href='/'>Головна</Link>
                     <Link href='/fundraiser'>Збори</Link>
                     <Link href='/volunteers'>Волонтери</Link>
-                    <Link href='/about'>Про нас</Link>
+                    <Link href='/support'>Підтримка</Link>
                     <Link href='/profile'>Профіль</Link>
                 </ul>
             </section>

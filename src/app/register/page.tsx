@@ -1,6 +1,6 @@
 
 import React from "react";
-import RegForm from "@/app/register/RegForm";
+import RegForm from "@/app/register/components/RegForm";
 import OtherAuth from "@/components/OtherAuth";
 import {useRouter} from "next/navigation";
 

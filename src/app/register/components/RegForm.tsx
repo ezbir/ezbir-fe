@@ -4,7 +4,7 @@ import Button from "@/components/Button";
 import React, {ChangeEvent, FormEvent, useState} from "react";
 import {Modal } from 'antd';
 import axios from "axios";
-import CheckCodeForm from "@/components/CheckCodeForm";
+import CheckCodeForm from "@/app/register/components/CheckCodeForm";
 
 const RegForm: React.FC = (props) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -39,24 +39,15 @@ const RegForm: React.FC = (props) => {
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        axios.post('http://localhost:8080/user/register', {
+        axios.post('http://localhost:8080/api/auth/register', {
             username: username,
             email: email,
             password: password,
             repeatPassword: repeatPassword
-        },{withCredentials: true /* Дозволяє передачу сесійних куки */})
+        },{ withCredentials: true })
             .then((response) =>{
                 console.log(response)
                 showModal()
-                axios.post('http://localhost:8080/user/send/code?email='+`${email}`, {
-                    email: email,
-                },{withCredentials: true /* Дозволяє передачу сесійних куки */})
-                    .then(function (response){
-                        console.log(response)
-                    })
-                    .catch(function (error){
-                        console.log(error)
-                    })
 
             })
             .catch((error) =>{

@@ -1,19 +1,6 @@
 import Link from "next/link";
+import {FundraiserData} from "@/interfaces/FundraiserData";
 
-interface FundraiserCardProps {
-    cards: string[],
-    categories: string[],
-    description: string,
-    isClosed: boolean,
-    jarLink: string,
-    name: string,
-    posts: string[],
-    suma: number,
-    userId: number,
-    fundraiserId: number,
-    username: string | null,
-    views: number
-}
 export enum FundraiserCategory {
     Medical_Supplies_Equipment = 'Медичне обладнання',
     Support_Military_Forces = 'Підтримка військових',
@@ -30,46 +17,66 @@ export enum FundraiserCategory {
 }
 
 
-const FundraiserCard: React.FC<FundraiserCardProps> = (
+const FundraiserCard: React.FC<FundraiserData> = (
     {
-        cards,
         categories,
         description,
         isClosed,
         jarLink,
         name,
         posts,
-        suma,
-        userId,
+        amount,
+        user_id,
         fundraiserId,
         username,
-        views
+        views,
+        key,
+        isEdit
     }) =>{
     const truncatedDescription = description.length > 250
         ? description.substring(0, 200) + "..."
         : description;
-    return(
-        <>
+
+    const hundleEdit = () =>{
+        alert('test')
+    }
+
+    return (
+        <li className='bg-gray-200 w-full h-[220px] mt-3 mb-3 p-4 rounded'
+            key={key}>
             <section className='flex flex-col h-full'>
                 <section className='flex h-[90%]'>
                     <section className='flex flex-col w-3/4'>
-                        <Link href={`/fundraiser/${fundraiserId}`}><h2 className='hover:text-[#7c7bff] hover:transition transition'>{name}</h2></Link>
-                        <p>Користувач:  <Link href={`/user/${userId}`}><strong>{username}</strong></Link></p>
+                        <Link href={`/fundraiser/${fundraiserId}`}><h2
+                            className='hover:text-[#7c7bff] hover:transition transition'>{name}</h2></Link>
+                        <p>Користувач: <Link href={`/user/${user_id}`}><strong>{username}</strong></Link></p>
                         <p className='w-[700px] break-words'>
                             Опис: <br/>
                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{truncatedDescription}
                         </p>
                     </section>
                     <section className='w-1/4 flex flex-col justify-center items-center'>
-                        <h3>{suma}₴</h3>
+                        <h3>{amount}₴</h3>
                         <h4>{!isClosed ? <p className='text-green-500'>Збір відкритий</p> :
                             <p className='text-red-400'>Збір закритий</p>}</h4>
                     </section>
+                    {
+                        isEdit ?
+                            <section>
+                                <img src="/img/redactIcon.svg"
+                                     alt="edit"
+                                     className='hover:cursor-pointer'
+                                     onClick={hundleEdit}
+                                />
+                            </section>
+                            : ''
+                    }
+
                 </section>
 
 
                 <section className='flex justify-center'>
-                    {categories.slice(0,3).map((category, index) => (
+                    {categories.slice(0, 3).map((category, index) => (
                         <p key={index} className="ml-2 mr-2">
                             #{FundraiserCategory[category as keyof typeof FundraiserCategory]}
                         </p>
@@ -77,7 +84,7 @@ const FundraiserCard: React.FC<FundraiserCardProps> = (
                 </section>
             </section>
 
-        </>
+        </li>
     );
 };
 

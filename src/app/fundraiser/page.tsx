@@ -1,41 +1,26 @@
 'use client'
-import React, { useEffect, useState } from "react";
+import React, {useEffect, useState} from "react";
 import axios from "axios";
 import FundraiserCard from "@/components/FundraiserCard";
+import {FundraiserData} from "@/interfaces/FundraiserData";
 
-interface FundraiserData {
-    cards: string[],
-    categories: string[],
-    description: string,
-    isClosed: boolean,
-    jarLink: string,
-    name: string,
-    posts: string[],
-    suma: number,
-    userId: number,
-    fundraiserId: number,
-    username: string,
-    views: number
-
-}
 
 const Fundraiser: React.FC = () => {
     const [itemList, setItemList] = useState<FundraiserData[]>([]);
 
     useEffect(() => {
-        axios.get<FundraiserData[]>('http://localhost:8080/user/fundraiser/get/all', {})
+        axios.get<FundraiserData[]>('http://localhost:8080/api/fundraisers/search',)
             .then(response => {
                 console.log(response.data)
                 const data = response.data.map(el => ({
-                    cards: el.cards,
                     categories: el.categories,
                     description: el.description,
                     isClosed: el.isClosed,
                     jarLink: el.jarLink,
                     name: el.name,
                     posts: el.posts,
-                    suma: el.suma,
-                    userId: el.userId,
+                    amount: el.amount,
+                    user_id: el.user_id,
                     fundraiserId: el.fundraiserId,
                     username: el.username,
                     views: el.views
@@ -68,30 +53,27 @@ const Fundraiser: React.FC = () => {
                         </label>
                     </section>
                     <section>
-                        <h4 className='text-gray-700'>Всього зборів : 3</h4>
+                        <h4 className='text-gray-700'>Всього зборів : {itemList.length}</h4>
                     </section>
                 </section>
 
 
                 <ul className='w-full mt-10'>
                     {itemList.map(item => (
-                        <li className='border-b-2 border-black w-full h-[220px] mt-3 mb-3 p-2'
-                            key={item.fundraiserId}>
-                            <FundraiserCard
-                                cards={item.cards}
-                                categories={item.categories}
-                                description={item.description}
-                                isClosed={item.isClosed}
-                                jarLink={item.jarLink}
-                                name={item.name}
-                                posts={item.posts}
-                                suma={item.suma}
-                                userId={item.userId}
-                                fundraiserId={item.fundraiserId}
-                                username={item.username}
-                                views={item.views}
-                            />
-                        </li>
+                        <FundraiserCard
+                            categories={item.categories}
+                            description={item.description}
+                            isClosed={item.isClosed}
+                            jarLink={item.jarLink}
+                            name={item.name}
+                            posts={item.posts}
+                            amount={item.amount}
+                            user_id={item.user_id}
+                            fundraiserId={item.fundraiserId}
+                            username={item.username}
+                            views={item.views}
+                            key={item.fundraiserId}
+                        />
                     ))}
                 </ul>
             </section>

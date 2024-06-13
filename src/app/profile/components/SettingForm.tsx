@@ -9,26 +9,33 @@ const SettingForm: React.FC = (props) =>{
 
     const inputStyle:string = 'w-full border-b-2 border-black p-1 mb-3';
 
-    return(
-        <form>
-            <label>
-                Про себе:<br/>
-                <input className={inputStyle}
-                       value={infoAboutYourself ? infoAboutYourself : ''}
-                       type="text"
-                       onChange={handleInfoAboutYourselfChange}
-                       placeholder=''/>
-            </label>
-            <label>
-                Пошта:
-                <input className={inputStyle}
-                       value={infoAboutYourself ? infoAboutYourself : ''}
-                       type="email"
-                       onChange={handleInfoAboutYourselfChange}
-                       placeholder=''/>
-            </label>
+    const hundleExit = () =>{
+        sessionStorage.clear()
+        window.location.href = '/';
+    }
 
-        </form>
+    return(
+        <>
+            <form>
+                <label>
+                    Про себе:<br/>
+                    <input className={inputStyle}
+                           value={infoAboutYourself ? infoAboutYourself : ''}
+                           type="text"
+                           onChange={handleInfoAboutYourselfChange}
+                           placeholder=''/>
+                </label>
+                <label>
+                    Пошта:
+                    <input className={inputStyle}
+                           value={infoAboutYourself ? infoAboutYourself : ''}
+                           type="email"
+                           onChange={handleInfoAboutYourselfChange}
+                           placeholder=''/>
+                </label>
+            </form>
+            <button onClick={hundleExit} className='text-red-400'>Вийти</button>
+        </>
     );
 };
 

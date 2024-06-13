@@ -2,38 +2,40 @@
 
 import CreateFundraiserMenu from "@/app/profile/components/CreateFundraiserMenu";
 import {useRouter} from "next/navigation";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {Avatar} from "antd";
-import {UserOutlined} from "@ant-design/icons";
+
+// User imports
 import FundraiserCard from "@/components/FundraiserCard";
 import SettingMenu from "@/app/profile/components/SettingMenu";
-import FileUpload from "@/components/FileUpload";
+import {FundraiserData} from "@/interfaces/FundraiserData";
 
-interface Fundraiser {
-    cards: string[]
-    categories: string[]
-    description: string
-    isClosed: boolean;
-    jarLink: string;
-    posts: string[];
-    suma: number;
-    userId: number,
-    fundraiserId: number,
-    username: string,
-    name: string,
-    views: number
-}
 const Profile: React.FC = (props) =>{
     const router = useRouter();
+    const [fundraisersData, setFundraisersData] = useState<FundraiserData[]>([]);
+
 
     useEffect(() => {
-        const token:string | null = sessionStorage.getItem('auth_token');
+        const token: string | null = sessionStorage.getItem('auth_token');
         if (!token) {
             router.push('/login');
+        } else {
+            try {
+                const storedFundraisers = sessionStorage.getItem('fundraiser');
+                if (storedFundraisers) {
+                    setFundraisersData(JSON.parse(storedFundraisers));
+                }
+            } catch (error) {
+                console.error('Failed to parse fundraiser data:', error);
+                setFundraisersData([]);
+            }
         }
     }, [router]);
 
-    const fundraisersData = JSON.parse(sessionStorage.getItem('fundraiser') || '[]');
+    const username = sessionStorage.getItem('username') ?? '';
+    const email = sessionStorage.getItem('email') ?? '';
+    const infoAboutYourself = sessionStorage.getItem('infoAboutYourself') ?? '';
+
 
     return(
         <main className='flex flex-col  items-center'>
@@ -45,19 +47,19 @@ const Profile: React.FC = (props) =>{
                     <p>
                         Імʼя:
                         <br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{window.sessionStorage.getItem('username')}
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{username}
                     </p>
                     <br/>
                     <p>
                         Електронна пошта:
                         <br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{window.sessionStorage.getItem('email')}
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{email}
                     </p>
                     <br/>
                     <p>
                         Про себе:
                         <br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{window.sessionStorage.getItem('infoAboutYourself') == null? window.sessionStorage.getItem('infoAboutYourself') : 'Немає інформації'}
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{infoAboutYourself}
                     </p>
 
                 </section>
@@ -66,23 +68,22 @@ const Profile: React.FC = (props) =>{
             <section className='flex flex-col flex-grow items-center p-4  w-[80%]'>
                 <CreateFundraiserMenu/>
                 <ul className='w-full'>
-                    {fundraisersData.map((fundraiser:Fundraiser) => (
-                        <li className='border-b-2 border-black w-full h-[220px] mt-3 mb-3 p-2' key={fundraiser.fundraiserId}>
+                    {fundraisersData.map((item:FundraiserData) => (
                             <FundraiserCard
-                                cards={fundraiser.cards}
-                                categories={fundraiser.categories}
-                                description={fundraiser.description}
-                                isClosed={fundraiser.isClosed}
-                                jarLink={fundraiser.jarLink}
-                                name={fundraiser.name}
-                                posts={fundraiser.posts}
-                                suma={fundraiser.suma}
-                                userId={fundraiser.userId}
-                                fundraiserId={fundraiser.fundraiserId}
-                                username={window.sessionStorage.getItem('username')}
-                                views={fundraiser.views}
+                                categories={item.categories}
+                                description={item.description}
+                                isClosed={item.isClosed}
+                                jarLink={item.jarLink}
+                                name={item.name}
+                                posts={item.posts}
+                                amount={item.amount}
+                                user_id={item.user_id}
+                                fundraiserId={item.fundraiserId}
+                                username={username}
+                                views={item.views}
+                                key={item.fundraiserId}
+                                isEdit={true}
                             />
-                        </li>
                     ))}
                 </ul>
 

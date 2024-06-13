@@ -3,6 +3,14 @@ import {Button, Drawer, DrawerProps, Space} from "antd";
 import FundraiserForm from "@/app/profile/components/FundraiserForm";
 import axios from "axios";
 
+export interface formData {
+    name: string,
+    amount: number,
+    description: string,
+    categories: string[],
+    jar_link: string
+}
+
 const CreateFundraiserMenu: React.FC = (props) =>{
     const [open, setOpen] = useState(false);
 
@@ -15,10 +23,10 @@ const CreateFundraiserMenu: React.FC = (props) =>{
         setOpen(false);
     };
 
-    const hundleSubmit = (e: FormEvent<HTMLFormElement>, data:any) => {
+    const hundleSubmit = (e: FormEvent<HTMLFormElement>, data:formData) => {
         e.preventDefault()
         console.log(data)
-        axios.post('http://localhost:8080/user/fundraiser/add', data, {
+        axios.post('http://localhost:8080/api/fundraisers/add', data, {
             headers: {
                 Authorization: `Bearer ${window.sessionStorage.getItem('auth_token')}`,
             },

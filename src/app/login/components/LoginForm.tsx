@@ -17,7 +17,7 @@ const LoginForm: React.FC = (props) => {
     }
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        axios.post('http://localhost:8080/user/login', {
+        axios.post('http://localhost:8080/api/auth/login', {
                 email: email,
                 password: password
             }, {
@@ -30,7 +30,7 @@ const LoginForm: React.FC = (props) => {
                 window.sessionStorage.setItem('username', response.data.username)
                 window.sessionStorage.setItem('infoAboutYourself', response.data.infoAboutYourself)
                 window.sessionStorage.setItem('photoUrl', response.data.photoUrl)
-                window.sessionStorage.setItem('fundraiser', JSON.stringify(response.data.fundraiserList))
+                window.sessionStorage.setItem('fundraiser', JSON.stringify(response.data.fundraisers))
                 window.sessionStorage.setItem('userId', response.data.userId)
                 window.sessionStorage.setItem('email', email)
                 if (response.status === 200) {
