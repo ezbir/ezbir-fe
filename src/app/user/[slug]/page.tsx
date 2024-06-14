@@ -4,23 +4,11 @@ import axios from "axios";
 import { Avatar } from "antd";
 import FundraiserCard from "@/components/FundraiserCard";
 
-interface Fundraiser {
-    cards: string[]
-    categories: string[]
-    description: string
-    isClosed: boolean;
-    jarLink: string;
-    posts: string[];
-    suma: number;
-    userId: number,
-    fundraiserId: number,
-    username: string,
-    name: string,
-    views: number
-}
+//user imports
+import {FundraiserData} from "@/interfaces/FundraiserData";
 
 interface UserPageData {
-    fundraiserList: Fundraiser[];
+    fundraiserList: FundraiserData[];
     infoAboutYourself: string;
     photoUrl: string;
     userId: number;
@@ -70,18 +58,17 @@ const UserPage = ({ params }: { params: { slug: string } }) => {
                 <h2>Збори користувача:</h2>
                 <ul className='w-[80%]'>
                     {userData.fundraiserList.map((fundraiser) => (
-                        <li className='border-2 border-black w-full h-[270px] mt-3 mb-3 p-2' key={fundraiser.fundraiserId}>
+                        <li className='border-2 border-black w-full h-[270px] mt-3 mb-3 p-2' key={fundraiser.id}>
                             <FundraiserCard
-                                cards={fundraiser.cards}
+                                id={fundraiser.id}
                                 categories={fundraiser.categories}
                                 description={fundraiser.description}
-                                isClosed={fundraiser.isClosed}
-                                jarLink={fundraiser.jarLink}
+                                is_closed={fundraiser.is_closed}
+                                jar_link={fundraiser.jar_link}
                                 name={fundraiser.name}
                                 posts={fundraiser.posts}
-                                suma={fundraiser.suma}
-                                userId={fundraiser.userId}
-                                fundraiserId={fundraiser.fundraiserId}
+                                amount={fundraiser.amount}
+                                user_id={fundraiser.user_id}
                                 username={fundraiser.username}
                                 views={fundraiser.views}
                             />

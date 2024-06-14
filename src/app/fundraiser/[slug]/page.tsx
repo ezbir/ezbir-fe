@@ -101,8 +101,8 @@ const FundraiserPage = ({ params }: { params: { slug: string } }) => {
                     <h2>Пости:</h2>
                 </section>
                 <section className='flex justify-center'>
-                    <img className='h-[500] w-[500px]  m-2  border-2 border-black rounded-2xl' src="/shelter1.jpg" alt=""/>
-                    <img className='h-[500] w-[500px]  m-2 border-2 border-black rounded-2xl' src="/shelter2.jpg" alt=""/>
+                    <img className='h-[500] w-[500px]  m-2  border-2 border-black rounded-2xl' src="/img/shelter1.jpg" alt=""/>
+                    <img className='h-[500] w-[500px]  m-2 border-2 border-black rounded-2xl' src="/img/shelter2.jpg" alt=""/>
                 </section>
             </section>
 

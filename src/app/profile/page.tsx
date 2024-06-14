@@ -70,18 +70,18 @@ const Profile: React.FC = (props) =>{
                 <ul className='w-full'>
                     {fundraisersData.map((item:FundraiserData) => (
                             <FundraiserCard
+                                id={item.id}
                                 categories={item.categories}
                                 description={item.description}
-                                isClosed={item.isClosed}
-                                jarLink={item.jarLink}
+                                is_closed={item.is_closed}
+                                jar_link={item.jar_link}
                                 name={item.name}
                                 posts={item.posts}
                                 amount={item.amount}
                                 user_id={item.user_id}
-                                fundraiserId={item.fundraiserId}
                                 username={username}
                                 views={item.views}
-                                key={item.fundraiserId}
+                                key={item.id}
                                 isEdit={true}
                             />
                     ))}

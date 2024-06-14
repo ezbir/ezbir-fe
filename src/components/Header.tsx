@@ -5,7 +5,7 @@ const Header: React.FC = () => {
         <header className='bg-[#7c7bff] p-[20px] h-[300px] flex flex-col pt-[40px]'>
             <section className='flex-grow flex'>
                 <section className='flex'>
-                    <img className='w-[23px] h-[38px]' src="/blazon.svg" alt=""/>
+                    <img className='w-[23px] h-[38px]' src="/img/blazon.svg" alt=""/>
                     <h2 className='ml-4 w-[400px]'>Збираємо разом. Рятуємо життя</h2>
                 </section>
 

@@ -1,13 +1,13 @@
 export interface FundraiserData {
+    id: number,
     categories: string[],
     description: string,
-    isClosed: boolean,
-    jarLink: string,
+    is_closed: boolean,
+    jar_link: string,
     name: string,
     posts: string[],
     amount: number,
     user_id: number,
-    fundraiserId: number,
     username: string,
     views: number,
     key?: number

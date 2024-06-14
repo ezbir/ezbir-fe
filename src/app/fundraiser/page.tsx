@@ -15,15 +15,15 @@ const Fundraiser: React.FC = () => {
                 const data = response.data.map(el => ({
                     categories: el.categories,
                     description: el.description,
-                    isClosed: el.isClosed,
-                    jarLink: el.jarLink,
+                    is_closed: el.is_closed,
+                    jar_link: el.jar_link,
                     name: el.name,
                     posts: el.posts,
                     amount: el.amount,
                     user_id: el.user_id,
-                    fundraiserId: el.fundraiserId,
+                    id: el.id,
                     username: el.username,
-                    views: el.views
+                    views: el.views,
                 }));
                 setItemList(data);
             })
@@ -61,18 +61,18 @@ const Fundraiser: React.FC = () => {
                 <ul className='w-full mt-10'>
                     {itemList.map(item => (
                         <FundraiserCard
+                            id={item.id}
                             categories={item.categories}
                             description={item.description}
-                            isClosed={item.isClosed}
-                            jarLink={item.jarLink}
+                            is_closed={item.is_closed}
+                            jar_link={item.jar_link}
                             name={item.name}
                             posts={item.posts}
                             amount={item.amount}
                             user_id={item.user_id}
-                            fundraiserId={item.fundraiserId}
                             username={item.username}
                             views={item.views}
-                            key={item.fundraiserId}
+                            key={item.id}
                         />
                     ))}
                 </ul>

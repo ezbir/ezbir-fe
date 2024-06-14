@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {FundraiserData} from "@/interfaces/FundraiserData";
+import FundraiserEdit from "@/components/FundraiserEdit";
 
 export enum FundraiserCategory {
     Medical_Supplies_Equipment = 'Медичне обладнання',
@@ -19,27 +20,24 @@ export enum FundraiserCategory {
 
 const FundraiserCard: React.FC<FundraiserData> = (
     {
+        id,
         categories,
         description,
-        isClosed,
-        jarLink,
+        is_closed,
+        jar_link,
         name,
         posts,
         amount,
         user_id,
-        fundraiserId,
         username,
         views,
         key,
         isEdit
     }) =>{
-    const truncatedDescription = description.length > 250
+    const truncatedDescription:string = description.length > 250
         ? description.substring(0, 200) + "..."
         : description;
 
-    const hundleEdit = () =>{
-        alert('test')
-    }
 
     return (
         <li className='bg-gray-200 w-full h-[220px] mt-3 mb-3 p-4 rounded'
@@ -47,7 +45,7 @@ const FundraiserCard: React.FC<FundraiserData> = (
             <section className='flex flex-col h-full'>
                 <section className='flex h-[90%]'>
                     <section className='flex flex-col w-3/4'>
-                        <Link href={`/fundraiser/${fundraiserId}`}><h2
+                        <Link href={`/fundraiser/${id}`}><h2
                             className='hover:text-[#7c7bff] hover:transition transition'>{name}</h2></Link>
                         <p>Користувач: <Link href={`/user/${user_id}`}><strong>{username}</strong></Link></p>
                         <p className='w-[700px] break-words'>
@@ -57,17 +55,21 @@ const FundraiserCard: React.FC<FundraiserData> = (
                     </section>
                     <section className='w-1/4 flex flex-col justify-center items-center'>
                         <h3>{amount}₴</h3>
-                        <h4>{!isClosed ? <p className='text-green-500'>Збір відкритий</p> :
-                            <p className='text-red-400'>Збір закритий</p>}</h4>
+                        <h4>{is_closed ? <p className='text-red-400'>Збір закритий</p> :
+                            <p className='text-green-500'>Збір відкритий</p>}</h4>
                     </section>
                     {
                         isEdit ?
                             <section>
-                                <img src="/img/redactIcon.svg"
-                                     alt="edit"
-                                     className='hover:cursor-pointer'
-                                     onClick={hundleEdit}
-                                />
+                                <FundraiserEdit
+                                    amount={amount}
+                                    name={name}
+                                    jar_link={jar_link}
+                                    description={description}
+                                    is_closed={is_closed}
+                                    categories={categories}
+                                    id={id}/>
+
                             </section>
                             : ''
                     }

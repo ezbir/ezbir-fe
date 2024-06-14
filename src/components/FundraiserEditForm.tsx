@@ -1,52 +1,44 @@
 'use client'
 
-import {FormEvent, useState} from "react";
+import {EventHandler, FormEvent, useState} from "react";
 import Select, {StylesConfig} from 'react-select';
 
 //User imports
-import {formData} from "@/app/profile/components/CreateFundraiserMenu";
+import {FundraiserEditData} from "@/components/FundraiserEdit";
+import {options} from "@/app/profile/components/FundraiserForm";
+import button from "@/components/Button";
+import axios from "axios";
 
-interface FundraiserFormProps {
-    id: string,
-    submit: (e: FormEvent<HTMLFormElement>, data: formData) => void,
+interface FundraiserFormProps extends FundraiserEditData{
+    submit: (e: FormEvent<HTMLFormElement>, data: FundraiserEditData) => void,
 }
 
-export const options = [
-    {value: 'Medical_Supplies_Equipment', label: 'Медичне обладнання'},
-    {value: 'Support_Military_Forces', label: 'Підтримка військових'},
-    {value: 'Psychological_Support', label: 'Психологічна підтримка'},
-    {value: 'Education_Training', label: 'Навчання'},
-    {value: 'Emergency_Medical_Assistance', label: 'Невідкладна медична допомога'},
-    {value: 'Child_Protection', label: 'Захист дітей'},
-    {value: 'Environmental_Safety', label: 'Екологія'},
-    {value: 'Cyber_Security', label: 'Кібербезпека'},
-    {value: 'Infrastructure_Restoration', label: 'Інфраструктура'},
-    {value: 'Housing_Conditions', label: 'Житло'},
-    {value: 'Support_Vulnerable_Groups', label: 'Підтримка вразливих груп людей'},
-    {value: 'OTHER', label: 'Інше'},
-];
+
 
 const customStyles: StylesConfig = {
     control: (provided, state) => ({
         ...provided,
-        width: '100%', // Add this line to make it full-width
-        backgroundColor: '#E5E7EB', // Add this line to set the background color
-        fontSize: '25px', // Add this line to set the font size
-        padding: '1rem', // Add this line to set the padding
+        width: '100%',
+        backgroundColor: '#E5E7EB',
+        fontSize: '25px',
+        padding: '1rem',
         border: 'none',
         borderRadius: '0px',
+
         "&:hover": {
             outline: 'none',
         }
     }),
 };
-const FundraiserForm: React.FC<FundraiserFormProps> = ({id, submit}) => {
-    const [formData, setFormData] = useState<formData>({
-        name: '',
-        jar_link: '',
-        amount: NaN,
-        description: '',
-        categories: [],
+const FundraiserForm: React.FC<FundraiserFormProps> = ({id, amount, name, jar_link, description, is_closed, categories ,  submit}) => {
+
+    const [formData, setFormData] = useState<FundraiserEditData>({
+        amount: amount,
+        name: name,
+        jar_link: jar_link,
+        description: description,
+        is_closed: is_closed,
+        categories: categories,
     });
 
     let inputStyle: string = 'w-full bg-gray-200 border-black text-2xl p-4 m-1'
@@ -65,7 +57,7 @@ const FundraiserForm: React.FC<FundraiserFormProps> = ({id, submit}) => {
         }));
     };
 
-    const handleSumaChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFormData(prevState => ({
             ...prevState,
             amount: parseFloat(e.target.value)
@@ -89,9 +81,27 @@ const FundraiserForm: React.FC<FundraiserFormProps> = ({id, submit}) => {
         submit(e, formData);
     };
 
+    const handleClosedFundraiser = () =>{
+        setFormData(prevState => ({
+            ...prevState,
+            is_closed: !formData.is_closed
+        }));
+    }
+
+    const deleteFundraiser = () =>{
+        axios.delete(`http://localhost:8080/api/fundraisers/${id}`, {
+            headers: {
+                Authorization: `Bearer ${window.sessionStorage.getItem('auth_token')}`,
+            },
+            withCredentials: true,
+        })
+    }
+
+    const selectedCategories = options.filter(option => formData.categories.includes(option.value));
+
 
     return (
-        <form id={id} onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <section className="flex justify-around">
                 <label className='w-full m-1'>
                     Назва Збору:
@@ -108,12 +118,11 @@ const FundraiserForm: React.FC<FundraiserFormProps> = ({id, submit}) => {
                            type="number"
                            placeholder='450 000'
                            value={formData.amount}
-                           onChange={handleSumaChange}
+                           onChange={handleAmountChange}
                     />
                 </label>
-
             </section>
-            <label>
+            <label >
                 Посилання на банку:
                 <input className={inputStyle}
                        type="text"
@@ -122,6 +131,7 @@ const FundraiserForm: React.FC<FundraiserFormProps> = ({id, submit}) => {
                        onChange={handleJarLinkChange}
                 />
             </label>
+
             <label>
                 Категорії:
                 <Select
@@ -129,6 +139,7 @@ const FundraiserForm: React.FC<FundraiserFormProps> = ({id, submit}) => {
                     isMulti
                     onChange={handleCategoriesChange}
                     styles={customStyles}
+                    value={selectedCategories}
                     placeholder="Оберіть одну або декілька категорій"
                 />
             </label>
@@ -141,7 +152,12 @@ const FundraiserForm: React.FC<FundraiserFormProps> = ({id, submit}) => {
                 />
             </label>
 
-
+            {formData.is_closed
+                ? <button className='text-red-400 border-red-400 border-2 p-3 rounded' onClick={handleClosedFundraiser}>Відкрити збір</button>
+                : <button className='text-green-300 border-green-300 border-2 p-3 rounded' onClick={handleClosedFundraiser}>Закрити збір</button>}
+            <button onClick={deleteFundraiser} className='text-red-400 border-red-400 border-2 p-3 rounded'>
+                Видалити збір
+            </button>
         </form>
     );
 };
