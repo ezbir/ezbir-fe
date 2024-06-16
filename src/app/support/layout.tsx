@@ -1,8 +1,6 @@
 import type {Metadata} from "next";
 import "@/app/globals.css";
 import Header from "@/components/Header";
-import AuthHeader from "@/components/AuthHeader";
-import AuthAside from "@/components/AuthAside";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {

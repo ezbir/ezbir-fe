@@ -1,7 +1,7 @@
 'use client'
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import FundraiserCard from "@/components/FundraiserCard";
+import FundraiserCard from "@/app/fundraiser/components/FundraiserCard";
 import {FundraiserData} from "@/interfaces/FundraiserData";
 
 

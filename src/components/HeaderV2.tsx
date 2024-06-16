@@ -1,8 +1,8 @@
 import Link from "next/link";
 
-const AuthHeader: React.FC = (props) =>{
+const HeaderV2: React.FC = () =>{
     return(
-        <header className='w-3/4 bg-white p-7 border-b border-black'>
+        <header className='w-full bg-white p-7 border-b border-black'>
             <section className='flex-grow flex items-center'>
                 <Link className='flex ml-4 w-[400px]' href='/'>
                     <h6 className=' hover:border-b hover:border-black'>← Повернутись на сайт</h6>
@@ -23,4 +23,4 @@ const AuthHeader: React.FC = (props) =>{
     );
 };
 
-export default AuthHeader;
+export default HeaderV2;

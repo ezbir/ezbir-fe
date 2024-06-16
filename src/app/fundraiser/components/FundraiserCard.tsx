@@ -1,6 +1,6 @@
 import Link from "next/link";
 import {FundraiserData} from "@/interfaces/FundraiserData";
-import FundraiserEdit from "@/components/FundraiserEdit";
+import FundraiserEdit from "@/app/fundraiser/components/FundraiserEdit";
 
 export enum FundraiserCategory {
     Medical_Supplies_Equipment = 'Медичне обладнання',

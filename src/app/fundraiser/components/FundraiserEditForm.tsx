@@ -4,7 +4,7 @@ import {EventHandler, FormEvent, useState} from "react";
 import Select, {StylesConfig} from 'react-select';
 
 //User imports
-import {FundraiserEditData} from "@/components/FundraiserEdit";
+import {FundraiserEditData} from "@/app/fundraiser/components/FundraiserEdit";
 import {options} from "@/app/profile/components/FundraiserForm";
 import button from "@/components/Button";
 import axios from "axios";

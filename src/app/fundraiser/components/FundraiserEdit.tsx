@@ -2,7 +2,7 @@ import {FormEvent, useState} from "react";
 import {Button, Drawer, DrawerProps, Space} from "antd";
 import FundraiserForm from "@/app/profile/components/FundraiserForm";
 import axios from "axios";
-import FundraiserEditForm from "@/components/FundraiserEditForm";
+import FundraiserEditForm from "@/app/fundraiser/components/FundraiserEditForm";
 
 export interface FundraiserEditData {
     amount: number,

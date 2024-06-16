@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Avatar } from "antd";
-import FundraiserCard from "@/components/FundraiserCard";
+import FundraiserCard from "@/app/fundraiser/components/FundraiserCard";
 
 //user imports
 import {FundraiserData} from "@/interfaces/FundraiserData";

@@ -6,9 +6,9 @@ import {useEffect, useState} from "react";
 import {Avatar} from "antd";
 
 // User imports
-import FundraiserCard from "@/components/FundraiserCard";
-import SettingMenu from "@/app/profile/components/SettingMenu";
+import FundraiserCard from "@/app/fundraiser/components/FundraiserCard";
 import {FundraiserData} from "@/interfaces/FundraiserData";
+import Link from "next/link";
 
 const Profile: React.FC = (props) =>{
     const router = useRouter();
@@ -18,7 +18,7 @@ const Profile: React.FC = (props) =>{
     useEffect(() => {
         const token: string | null = sessionStorage.getItem('auth_token');
         if (!token) {
-            router.push('/login');
+            router.push('/auth/login');
         } else {
             try {
                 const storedFundraisers = sessionStorage.getItem('fundraiser');
@@ -63,7 +63,9 @@ const Profile: React.FC = (props) =>{
                     </p>
 
                 </section>
-                <SettingMenu/>
+                <Link href='/setting/account' className='flex-grow flex justify-end h-full'>
+                    <img src="/img/setting.svg" alt=""/>
+                </Link>
             </section>
             <section className='flex flex-col flex-grow items-center p-4  w-[80%]'>
                 <CreateFundraiserMenu/>

@@ -4,7 +4,7 @@ import Button from "@/components/Button";
 import React, {ChangeEvent, FormEvent, useState} from "react";
 import {Modal } from 'antd';
 import axios from "axios";
-import CheckCodeForm from "@/app/register/components/CheckCodeForm";
+import CheckCodeForm from "@/app/auth/register/components/CheckCodeForm";
 
 const RegForm: React.FC = (props) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
