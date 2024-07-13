@@ -34,6 +34,12 @@ const CreateFundraiserMenu: React.FC = (props) =>{
         })
             .then(response =>{
                 console.log(response)
+                let storedFundraisers: string | null = window.sessionStorage.getItem('fundraiser');
+                let currentFundraisers = storedFundraisers ? JSON.parse(storedFundraisers) : [];
+                currentFundraisers.push(response.data);
+
+                window.sessionStorage.setItem('fundraiser', JSON.stringify(currentFundraisers));
+                window.location.reload();
             })
             .catch(error =>{
                 console.log(error)
