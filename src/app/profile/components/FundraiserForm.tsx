@@ -44,7 +44,7 @@ const FundraiserForm: React.FC<FundraiserFormProps> = ({id, submit}) => {
     const [formData, setFormData] = useState<formData>({
         name: '',
         jar_link: '',
-        amount: NaN,
+        amount: 10000,
         description: '',
         categories: [],
     });
