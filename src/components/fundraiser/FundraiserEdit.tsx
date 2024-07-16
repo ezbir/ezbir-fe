@@ -1,20 +1,12 @@
-import {FormEvent, useState} from "react";
+import {useState} from "react";
 import {Button, Drawer, DrawerProps, Space} from "antd";
 import FundraiserForm from "@/app/profile/components/FundraiserForm";
-import axios from "axios";
-import FundraiserEditForm from "@/app/fundraiser/components/FundraiserEditForm";
+import {IFundraiserEdit} from "@/components/fundraiser/IFundraiser";
+import FundraiserEditForm from "@/components/fundraiser/FundraiserEditForm";
 
-export interface FundraiserEditData {
-    amount: number,
-    name: string,
-    jar_link: string,
-    description: string,
-    is_closed: boolean,
-    categories: string[],
-    id?: number,
-}
 
-const FundraiserEdit: React.FC<FundraiserEditData> = ({amount, id, name, is_closed, categories, description, jar_link}) =>{
+
+const FundraiserEdit: React.FC<IFundraiserEdit> = ({amount, id, name, is_closed, categories, description, jar_link}) =>{
     const [open, setOpen] = useState(false);
 
 
@@ -26,9 +18,8 @@ const FundraiserEdit: React.FC<FundraiserEditData> = ({amount, id, name, is_clos
         setOpen(false);
     };
 
-    const hundleSubmit = (e: FormEvent<HTMLFormElement>, data:FundraiserEditData) => {
-        e.preventDefault()
-        e.stopPropagation();
+    const hundleSubmit = (data:IFundraiserEdit) => {
+
     };
     return(
         <>

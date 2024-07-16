@@ -1,4 +1,4 @@
-export interface FundraiserData {
+export interface IFundraiserCard {
     id: number,
     categories: string[],
     description: string,
@@ -12,4 +12,14 @@ export interface FundraiserData {
     views: number,
     key?: number
     isEdit?: boolean,
+}
+
+export interface IFundraiserEdit {
+    amount: number,
+    name: string,
+    jar_link: string,
+    description: string,
+    is_closed: boolean,
+    categories: string[],
+    id?: number,
 }

@@ -6,13 +6,13 @@ import {useEffect, useState} from "react";
 import {Avatar} from "antd";
 
 // User imports
-import FundraiserCard from "@/app/fundraiser/components/FundraiserCard";
-import {FundraiserData} from "@/interfaces/FundraiserData";
+import FundraiserCard from "@/components/fundraiser/FundraiserCard";
+import {IFundraiserCard} from "@/components/fundraiser/IFundraiser";
 import Link from "next/link";
 
-const Profile: React.FC = (props) =>{
+const Profile: React.FC = () =>{
     const router = useRouter();
-    const [fundraisersData, setFundraisersData] = useState<FundraiserData[]>([]);
+    const [fundraisersData, setFundraisersData] = useState<IFundraiserCard[]>([]);
 
 
     useEffect(() => {
@@ -70,7 +70,7 @@ const Profile: React.FC = (props) =>{
             <section className='flex flex-col flex-grow items-center p-4  w-[80%]'>
                 <CreateFundraiserMenu/>
                 <ul className='w-full'>
-                    {fundraisersData.map((item:FundraiserData) => (
+                    {fundraisersData.map((item:IFundraiserCard) => (
                             <FundraiserCard
                                 id={item.id}
                                 categories={item.categories}

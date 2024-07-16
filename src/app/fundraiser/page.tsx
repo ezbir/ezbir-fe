@@ -1,8 +1,8 @@
 'use client'
 import React, {useEffect, useState} from "react";
 import axios from "axios";
-import FundraiserCard from "@/app/fundraiser/components/FundraiserCard";
-import {FundraiserData} from "@/interfaces/FundraiserData";
+import FundraiserCard from "@/components/fundraiser/FundraiserCard";
+import {FundraiserData} from "@/components/fundraiser/IFundraiser";
 
 
 const Fundraiser: React.FC = () => {

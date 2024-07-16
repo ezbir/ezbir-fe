@@ -1,24 +1,10 @@
 import Link from "next/link";
-import {FundraiserData} from "@/interfaces/FundraiserData";
-import FundraiserEdit from "@/app/fundraiser/components/FundraiserEdit";
-
-export enum FundraiserCategory {
-    Medical_Supplies_Equipment = 'Медичне обладнання',
-    Support_Military_Forces = 'Підтримка військових',
-    Psychological_Support = 'Психологічна підтримка',
-    Education_Training = 'Навчання',
-    Emergency_Medical_Assistance = 'Невідкладна медична допомога',
-    Child_Protection = 'Захист дітей',
-    Environmental_Safety = 'Екологія',
-    Cyber_Security = 'Кібербезпека',
-    Infrastructure_Restoration = 'Інфраструктура',
-    Housing_Conditions = 'Житло',
-    Support_Vulnerable_Groups = 'Підтримка вразливих груп людей',
-    OTHER = 'Інше'
-}
+import {IFundraiserCard} from "@/components/fundraiser/IFundraiser";
+import {FundraiserCategory} from "@/components/fundraiser/FundraiserCategoryEnum";
+import FundraiserEdit from "@/components/fundraiser/FundraiserEdit";
 
 
-const FundraiserCard: React.FC<FundraiserData> = (
+const FundraiserCard: React.FC<IFundraiserCard> = (
     {
         id,
         categories,
@@ -58,8 +44,7 @@ const FundraiserCard: React.FC<FundraiserData> = (
                         <h4>{is_closed ? <p className='text-red-400'>Збір закритий</p> :
                             <p className='text-green-500'>Збір відкритий</p>}</h4>
                     </section>
-                    {
-                        isEdit ?
+                    {isEdit ?
                             <section>
                                 <FundraiserEdit
                                     amount={amount}
@@ -69,11 +54,8 @@ const FundraiserCard: React.FC<FundraiserData> = (
                                     is_closed={is_closed}
                                     categories={categories}
                                     id={id}/>
-
                             </section>
-                            : ''
-                    }
-
+                            : ''}
                 </section>
 
 

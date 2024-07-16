@@ -2,10 +2,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Avatar } from "antd";
-import FundraiserCard from "@/app/fundraiser/components/FundraiserCard";
+import FundraiserCard from "@/components/fundraiser/FundraiserCard";
 
 //user imports
-import {FundraiserData} from "@/interfaces/FundraiserData";
+import {FundraiserData} from "@/components/fundraiser/IFundraiser";
 
 interface UserPageData {
     fundraiserList: FundraiserData[];
