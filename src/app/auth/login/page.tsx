@@ -1,6 +1,6 @@
 import React from "react";
-import LoginForm from "@/app/auth/login/components/LoginForm";
-import OtherAuth from "@/app/auth/components/OtherAuth";
+import LoginForm from "@/components/auth/login/LoginForm";
+import { OtherAuth } from "@/components/auth/OtherAuth";
 
 const Login = () => {
 

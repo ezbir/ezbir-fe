@@ -3,26 +3,26 @@
 import Button from "@/components/Button";
 import React, {ChangeEvent, FormEvent, useState} from "react";
 import {Modal } from 'antd';
-import axios from "axios";
-import CheckCodeForm from "@/app/auth/register/components/CheckCodeForm";
+import { CheckCode } from "@/components/auth/register/CheckCode";
+import {onRegSubmit} from "@/components/auth/register/RegForm.func";
 
-const RegForm: React.FC = (props) => {
+export const RegForm: React.FC = (props) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [username, setUserName] = useState<string>('')
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     const [repeatPassword, setRepeatPassword] = useState<string>('')
 
-    const handleUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const onUsernameChange = (e: ChangeEvent<HTMLInputElement>) => {
         setUserName(e.target.value)
     }
-    const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const onEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
         setEmail(e.target.value)
     }
-    const handlePasswordChange = (e:ChangeEvent<HTMLInputElement>) => {
+    const onPasswordChange = (e:ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value)
     }
-    const handleRepeatPasswordChange = (e:ChangeEvent<HTMLInputElement>) => {
+    const onRepeatPasswordChange = (e:ChangeEvent<HTMLInputElement>) => {
         setRepeatPassword(e.target.value)
     }
     const showModal = () => {
@@ -37,50 +37,37 @@ const RegForm: React.FC = (props) => {
         setIsModalOpen(false);
     };
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
-        axios.post('http://localhost:8080/api/auth/register', {
-            username: username,
-            email: email,
-            password: password,
-            repeatPassword: repeatPassword
-        },{ withCredentials: true })
-            .then((response) =>{
-                console.log(response)
-                showModal()
-
-            })
-            .catch((error) =>{
-                console.log(error)
-            })
+        onRegSubmit(username, email, password, repeatPassword, showModal)
     }
 
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={onSubmit}>
             <input className='w-full border-b-2 border-black p-1 mt-3 mb-3'
                    type="text"
                    placeholder='Іван Петренко'
                    value={username}
-                   onChange={handleUsernameChange}
+                   onChange={onUsernameChange}
             />
             <input className='w-full border-b-2 border-black p-1 mt-3 mb-3'
                    type="email"
                    placeholder='ezbir@gmail.com'
                    value={email}
-                   onChange={handleEmailChange}
+                   onChange={onEmailChange}
             />
             <input className='w-full border-b-2 border-black p-1 mt-3 mb-3'
                    type="password"
                    placeholder='Пароль'
                    value={password}
-                   onChange={handlePasswordChange}
+                   onChange={onPasswordChange}
             />
             <input className='w-full border-b-2 border-black p-1 mt-3 mb-3'
                    type="password"
                    placeholder='Повторіть пароль'
                    value={repeatPassword}
-                   onChange={handleRepeatPasswordChange}
+                   onChange={onRepeatPasswordChange}
             />
 
             <Modal
@@ -88,11 +75,9 @@ const RegForm: React.FC = (props) => {
                    onOk={handleOk}
                    onCancel={handleCancel}
                    footer={[]}>
-                <CheckCodeForm/>
+                <CheckCode/>
             </Modal>
             <Button className='m-auto mt-3' primary value="Зареєструватися"/>
         </form>
     )
 };
-
-export default RegForm;

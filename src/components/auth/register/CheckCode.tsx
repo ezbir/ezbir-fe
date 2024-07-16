@@ -1,30 +1,18 @@
 import React, { ChangeEvent, FormEvent, useState, useEffect } from "react";
-import axios from "axios";
+import {onCodeSubmit} from "@/components/auth/register/CheckCode.func";
 
-const CheckCodeForm: React.FC = () => {
-    const [checkCode, setCheckCode] = useState<string>('')
+export const CheckCode: React.FC = () => {
+    const [code, setCode] = useState<string>('')
     const [redirect, setRedirect] = useState<boolean>(false);
     const [error, setError] = useState<string>('')
-    const handleCheckCodeChange = (e: ChangeEvent<HTMLInputElement>) => {
-        setCheckCode(e.target.value)
+    const onCodeChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setCode(e.target.value)
     }
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const onSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         e.stopPropagation();
-        axios.post(`http://localhost:8080/api/auth/verify?token=${checkCode}`, {
-
-        }, { withCredentials: true })
-            .then((response) => {
-                console.log(response);
-                if(response.status === 200){
-                    setRedirect(true)
-                }
-            })
-            .catch((error) => {
-                setError('Неправильний код')
-                setTimeout(() => {setError('')}, 3000)
-            })
+        onCodeSubmit(code, setRedirect, setError)
     }
 
     useEffect(() => {
@@ -34,14 +22,14 @@ const CheckCodeForm: React.FC = () => {
     }, [redirect]);
 
     return (
-        <form id='checkCode' onSubmit={handleSubmit}>
+        <form id='checkCode' onSubmit={onSubmit}>
             <h4>Перевірка пошти</h4>
             <p className='text-gray-500'>Будь ласка введіть код підтвердження з електроної пошти</p>
             <input className='w-full border-b-2 border-black p-1 mt-3'
                    type="text"
                    placeholder='1234567890'
-                   value={checkCode}
-                   onChange={handleCheckCodeChange}
+                   value={code}
+                   onChange={onCodeChange}
             />
             {error ? <p className='text-red-400 flex justify-center'>{error}</p> : ''}
             <section className='flex justify-center'>
@@ -50,5 +38,3 @@ const CheckCodeForm: React.FC = () => {
         </form>
     );
 };
-
-export default CheckCodeForm;
