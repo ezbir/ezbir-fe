@@ -1,4 +1,4 @@
-const AuthAside: React.FC = (props) =>{
+export const AuthAside: React.FC = (props) =>{
     return(
         <aside className='w-1/4 p-10'>
             <h4>Коротко про проєкт</h4>
@@ -8,4 +8,3 @@ const AuthAside: React.FC = (props) =>{
     );
 };
 
-export default AuthAside;

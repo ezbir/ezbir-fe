@@ -1,7 +1,7 @@
 
 import React from "react";
-import RegForm from "@/app/auth/register/components/RegForm";
-import OtherAuth from "@/app/auth/components/OtherAuth";
+import { RegForm } from "@/components/auth/register/RegForm";
+import { OtherAuth } from "@/components/auth/OtherAuth";
 import {useRouter} from "next/navigation";
 
 const Register: React.FC = (props) => {
