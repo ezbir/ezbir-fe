@@ -86,6 +86,7 @@ const FundraiserForm: React.FC<FundraiserFormProps> = ({id, submit}) => {
         }));
     };
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault()
         submit(e, formData);
     };
 
