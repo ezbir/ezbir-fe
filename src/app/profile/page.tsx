@@ -1,6 +1,6 @@
 'use client'
 
-import CreateFundraiserMenu from "@/app/profile/components/CreateFundraiserMenu";
+import CreateFundraiser from "@/components/fundraiser/CreateFundraiser";
 import {useRouter} from "next/navigation";
 import {useEffect, useState} from "react";
 import {Avatar} from "antd";
@@ -68,7 +68,7 @@ const Profile: React.FC = () =>{
                 </Link>
             </section>
             <section className='flex flex-col flex-grow items-center p-4  w-[80%]'>
-                <CreateFundraiserMenu/>
+                <CreateFundraiser/>
                 <ul className='w-full'>
                     {fundraisersData.map((item:IFundraiserCard) => (
                             <FundraiserCard

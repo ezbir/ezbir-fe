@@ -13,13 +13,13 @@ export const onLoginSubmit = (
         }
     )
         .then((response) => {
-            console.log(response.data.token)
+            console.log(response.data)
             window.sessionStorage.setItem('auth_token', response.data.token)
             window.sessionStorage.setItem('username', response.data.username)
             window.sessionStorage.setItem('infoAboutYourself', response.data.infoAboutYourself)
             window.sessionStorage.setItem('photoUrl', response.data.photoUrl)
             window.sessionStorage.setItem('fundraiser', JSON.stringify(response.data.fundraisers))
-            window.sessionStorage.setItem('userId', response.data.userId)
+            window.sessionStorage.setItem('id', response.data.id)
             window.sessionStorage.setItem('email', email)
             if (response.status === 200) {
                 window.location.href = '/profile';

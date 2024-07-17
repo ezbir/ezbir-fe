@@ -6,7 +6,8 @@ import axios from "axios";
 
 // User imports
 import { IFundraiserEdit } from "@/components/fundraiser/IFundraiser";
-import { options } from "@/app/profile/components/FundraiserForm";
+import { options } from "@/components/fundraiser/CreateFundraiserForm";
+import {onDeleteFundraiser} from "@/components/fundraiser/FundraiserEditForm.func";
 
 
 interface FundraiserFormProps extends IFundraiserEdit {
@@ -50,13 +51,8 @@ const FundraiserForm: React.FC<FundraiserFormProps> = ({ id, amount, name, jar_l
         setValue('is_closed', !is_closed);
     };
 
-    const deleteFundraiser = () => {
-        axios.delete(`http://localhost:8080/api/fundraisers/${id}`, {
-            headers: {
-                Authorization: `Bearer ${window.sessionStorage.getItem('auth_token')}`,
-            },
-            withCredentials: true,
-        });
+    const onDelete = () => {
+        onDeleteFundraiser(id)
     };
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -119,11 +115,8 @@ const FundraiserForm: React.FC<FundraiserFormProps> = ({ id, amount, name, jar_l
             <button type="button" onClick={handleClosedFundraiser} className={`p-3 rounded ${is_closed ? 'text-red-400 border-red-400 border-2' : 'text-green-300 border-green-300 border-2'}`}>
                 {is_closed ? 'Відкрити збір' : 'Закрити збір'}
             </button>
-            <button type="button" onClick={deleteFundraiser} className='text-red-400 border-red-400 border-2 p-3 rounded'>
+            <button type="button" onClick={onDelete} className='text-red-400 border-red-400 border-2 p-3 rounded'>
                 Видалити збір
-            </button>
-            <button type="submit" className='text-blue-400 border-blue-400 border-2 p-3 rounded'>
-                Зберегти зміни
             </button>
         </form>
     );
