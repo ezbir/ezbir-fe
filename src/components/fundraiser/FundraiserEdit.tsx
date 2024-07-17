@@ -1,6 +1,5 @@
 import {useState} from "react";
 import {Button, Drawer, DrawerProps, Space} from "antd";
-import FundraiserForm from "@/app/profile/components/FundraiserForm";
 import {IFundraiserEdit} from "@/components/fundraiser/IFundraiser";
 import FundraiserEditForm from "@/components/fundraiser/FundraiserEditForm";
 

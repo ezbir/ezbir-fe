@@ -1,7 +1,8 @@
 import {FormEvent, useState} from "react";
-import {Button, Drawer, DrawerProps, Space} from "antd";
-import FundraiserForm from "@/app/profile/components/FundraiserForm";
-import axios from "axios";
+import {Drawer, Space} from "antd";
+import {onCreateFundraiser} from "@/components/fundraiser/CreateFundraiser.func";
+import {IFundraiserForm} from "@/components/fundraiser/IFundraiser";
+import CreateFundraiserForm from "@/components/fundraiser/CreateFundraiserForm";
 
 export interface formData {
     name: string,
@@ -11,7 +12,7 @@ export interface formData {
     jar_link: string
 }
 
-const CreateFundraiserMenu: React.FC = (props) =>{
+const CreateFundraiser: React.FC = (props) =>{
     const [open, setOpen] = useState(false);
 
 
@@ -23,28 +24,9 @@ const CreateFundraiserMenu: React.FC = (props) =>{
         setOpen(false);
     };
 
-    const hundleSubmit = (e: FormEvent<HTMLFormElement>, data:formData) => {
+    const onSubmit = (e: FormEvent<HTMLFormElement>, data:IFundraiserForm) => {
         e.preventDefault()
-        console.log(data)
-        axios.post('http://localhost:8080/api/fundraisers/add', data, {
-            headers: {
-                Authorization: `Bearer ${window.sessionStorage.getItem('auth_token')}`,
-            },
-            withCredentials: true
-        })
-            .then(response =>{
-                console.log(response)
-                let storedFundraisers: string | null = window.sessionStorage.getItem('fundraiser');
-                let currentFundraisers = storedFundraisers ? JSON.parse(storedFundraisers) : [];
-                currentFundraisers.push(response.data);
-
-                window.sessionStorage.setItem('fundraiser', JSON.stringify(currentFundraisers));
-                window.location.reload();
-            })
-            .catch(error =>{
-                console.log(error)
-            })
-
+        onCreateFundraiser(data)
     };
     return(
         <>
@@ -69,10 +51,10 @@ const CreateFundraiserMenu: React.FC = (props) =>{
                     </Space>
                 }
             >
-                <FundraiserForm id='fundraiserForm' submit={hundleSubmit}/>
+                <CreateFundraiserForm id='fundraiserForm' submit={onSubmit}/>
             </Drawer>
         </>
     );
 };
 
-export default CreateFundraiserMenu;
+export default CreateFundraiser;

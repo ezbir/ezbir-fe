@@ -21,5 +21,12 @@ export interface IFundraiserEdit {
     description: string,
     is_closed: boolean,
     categories: string[],
-    id?: number,
+    id: number,
+}
+export interface IFundraiserForm{
+    name: string,
+    amount: number,
+    description: string,
+    categories: string[],
+    jar_link: string
 }
