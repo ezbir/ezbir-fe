@@ -1,5 +1,5 @@
-import ResponseForm from "@/app/support/components/ResponseForm";
-import FAQ from "@/app/support/components/FAQ";
+import ResponseForm from "@/components/support/ResponseForm";
+import FAQ from "@/components/support/FAQ";
 
 const AboutUs: React.FC = (props) =>{
     return(
