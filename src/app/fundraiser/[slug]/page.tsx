@@ -2,26 +2,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
-import {FundraiserCategory} from "@/components/fundraiser/FundraiserCard";
-
-interface FundraiserData {
-    cards: string[],
-    categories: string[],
-    description: string,
-    fundraiserId: number,
-    isClosed: boolean,
-    jarLink: string,
-    name: string,
-    posts: string[],
-    suma: number,
-    userId: number,
-    username: string,
-    views: number;
-}
+import {IFundraiserCard} from "@/components/fundraiser/IFundraiser";
+import {FundraiserCategory} from "@/components/fundraiser/FundraiserCategoryEnum";
 
 
 const FundraiserPage = ({ params }: { params: { slug: string } }) => {
-    const [fundraiser, setFundraiser] = useState<FundraiserData | null>(null);
+    const [fundraiser, setFundraiser] = useState<IFundraiserCard | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
 
@@ -58,21 +44,13 @@ const FundraiserPage = ({ params }: { params: { slug: string } }) => {
                     <br/>
                     <p>
                         Користувач: <br/>
-                        <Link href={`/user/${fundraiser.userId}`}>
+                        <Link href={`/user/${fundraiser.user_id}`}>
                             <strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{fundraiser.username}</strong>
                         </Link>
                     </p>
                     <p>
-                        Реквізити: <br/>
-                        <ul>
-                            {fundraiser.cards.map((el, index) => (
-                                <li key={index}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>{el}</strong></li>
-                            ))}
-                        </ul>
-                    </p>
-                    <p>
                         Посилання на банку: <br/>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><strong>{fundraiser.jarLink? fundraiser.jarLink : "Банка відсутня"}</strong></a>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#"><strong>{fundraiser.jar_link? fundraiser.jar_link : "Банка відсутня"}</strong></a>
                     </p>
                     <p>
                         Опис збору: <br/>
@@ -81,8 +59,8 @@ const FundraiserPage = ({ params }: { params: { slug: string } }) => {
 
                 </section>
                 <section className='w-1/4 flex flex-col justify-center items-center'>
-                    <h2>{fundraiser.suma}₴</h2>
-                    <h4>{!fundraiser.isClosed ? <p className='text-green-500'>Збір відкритий</p> :
+                    <h2>{fundraiser.amount}₴</h2>
+                    <h4>{!fundraiser.is_closed ? <p className='text-green-500'>Збір відкритий</p> :
                         <p className='text-red-400'>Збір закритий</p>}</h4>
                     <p>
                         Перегляди: {fundraiser.views}
