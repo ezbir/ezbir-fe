@@ -44,13 +44,13 @@ const CreateFundraiser: React.FC = (props) =>{
                         <button onClick={onClose} className="border border-red-500 hover:border-red-600 text-red-500 py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50">
                             Скасувати
                         </button>
-                        <button className="border border-green-500 hover:border-green-600 text-green-500 py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50" type='submit' form='fundraiserForm'>
+                        <button className="border border-green-500 hover:border-green-600 text-green-500 py-2 px-4 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50" type='submit' form='createFundraiser'>
                             Створити
                         </button>
                     </Space>
                 }
             >
-                <CreateFundraiserForm id='fundraiserForm' submit={onSubmit}/>
+                <CreateFundraiserForm id='createFundraiser' submit={onSubmit}/>
             </Drawer>
         </>
     );

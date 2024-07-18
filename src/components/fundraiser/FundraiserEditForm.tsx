@@ -5,15 +5,16 @@ import { useForm } from "react-hook-form";
 // User imports
 import {IFundraiserForm} from "@/components/fundraiser/IFundraiser";
 import { options } from "@/components/fundraiser/CreateFundraiserForm";
-import {onDeleteFundraiser} from "@/components/fundraiser/FundraiserEditForm.func";
+import {onDeleteFundraiser} from "@/components/fundraiser/FundraiserEdit.func";
 import FundraiserForm from "@/components/fundraiser/FundraiserForm";
 
 
 interface FundraiserFormProps extends IFundraiserForm {
     submit: (data: IFundraiserForm) => void,
+    idTest: string,
 }
 
-const FundraiserEditForm: React.FC<FundraiserFormProps> = ({ id, amount, name, jar_link, description, is_closed, categories, submit }) => {
+const FundraiserEditForm: React.FC<FundraiserFormProps> = ({ id, amount, name, jar_link, description, is_closed, categories, submit, idTest }) => {
     const { register, handleSubmit, control, setValue } = useForm<IFundraiserForm>({
         defaultValues: {
             amount,
@@ -40,6 +41,7 @@ const FundraiserEditForm: React.FC<FundraiserFormProps> = ({ id, amount, name, j
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <FundraiserForm
+                            id={idTest}
                             submit={onSubmit}
                             register={register}
                             handleSubmit={handleSubmit}

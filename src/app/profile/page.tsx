@@ -25,7 +25,6 @@ const Profile: React.FC = () => {
         } else {
             try {
                 const storedFundraisers = window.sessionStorage.getItem('fundraiser');
-                debugger
                 if (storedFundraisers) {
                     setFundraisersData(JSON.parse(storedFundraisers));
 
