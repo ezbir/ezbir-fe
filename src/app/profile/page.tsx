@@ -1,74 +1,80 @@
-'use client'
+'use client';
 
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { Avatar } from "antd";
 import CreateFundraiser from "@/components/fundraiser/CreateFundraiser";
-import {useRouter} from "next/navigation";
-import {useEffect, useState} from "react";
-import {Avatar} from "antd";
-
-// User imports
 import FundraiserCard from "@/components/fundraiser/FundraiserCard";
-import {IFundraiserCard} from "@/components/fundraiser/IFundraiser";
+import { IFundraiserCard } from "@/components/fundraiser/IFundraiser";
 import Link from "next/link";
 
 const Profile: React.FC = () => {
     const router = useRouter();
     const [fundraisersData, setFundraisersData] = useState<IFundraiserCard[]>([]);
+    const [username, setUsername] = useState<string | null>(null);
+    const [email, setEmail] = useState<string | null>(null);
+    const [infoAboutYourself, setInfoAboutYourself] = useState<string | null>(null);
+    const [isClient, setIsClient] = useState(false);
 
     useEffect(() => {
-        if (typeof window !== 'undefined') {
-            const token: string | null = sessionStorage.getItem('auth_token');
-            if (!token) {
-                router.push('/auth/login');
-            } else {
-                try {
-                    const storedFundraisers = sessionStorage.getItem('fundraiser');
-                    if (storedFundraisers) {
-                        setFundraisersData(JSON.parse(storedFundraisers));
-                    }
-                } catch (error) {
-                    console.error('Failed to parse fundraiser data:', error);
-                    setFundraisersData([]);
+        setIsClient(true);
+
+        const token: string | null = window.sessionStorage.getItem('auth_token');
+        if (!token) {
+            router.push('/auth/login');
+        } else {
+            try {
+                const storedFundraisers = window.sessionStorage.getItem('fundraiser');
+                debugger
+                if (storedFundraisers) {
+                    setFundraisersData(JSON.parse(storedFundraisers));
+
                 }
+                setUsername(window.sessionStorage.getItem('username'));
+                setEmail(window.sessionStorage.getItem('email'));
+                setInfoAboutYourself(window.sessionStorage.getItem('infoAboutYourself'));
+            } catch (error) {
+                console.error('Failed to parse fundraiser data:', error);
+                setFundraisersData([]);
             }
         }
     }, [router]);
 
-    const username = typeof window !== 'undefined' ? sessionStorage.getItem('username') ?? '' : '';
-    const email = typeof window !== 'undefined' ? sessionStorage.getItem('email') ?? '' : '';
-    const infoAboutYourself = typeof window !== 'undefined' ? sessionStorage.getItem('infoAboutYourself') ?? '' : '';
+    if (!isClient) {
+        return <main className='flex flex-col items-center'>Loading...</main>;
+    }
 
     return (
-        <main className='flex flex-col  items-center'>
+        <main className='flex flex-col items-center'>
             <section className='flex flex-grow p-4 w-[80%] mt-4'>
                 <section>
-                    <Avatar shape="square" size={256} icon={<img src='/img/userIcon.svg' alt="avatar"/>}/>
+                    <Avatar shape="square" size={256} icon={<img src='/img/userIcon.svg' alt="avatar" />} />
                 </section>
                 <section className='flex flex-col pl-4'>
                     <p>
                         Імʼя:
-                        <br/>
+                        <br />
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{username}
                     </p>
-                    <br/>
+                    <br />
                     <p>
                         Електронна пошта:
-                        <br/>
+                        <br />
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{email}
                     </p>
-                    <br/>
+                    <br />
                     <p>
                         Про себе:
-                        <br/>
+                        <br />
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{infoAboutYourself}
                     </p>
-
                 </section>
                 <Link href='/setting/account' className='flex-grow flex justify-end h-full'>
-                    <img src="/img/setting.svg" alt=""/>
+                    <img src="/img/setting.svg" alt="settings" />
                 </Link>
             </section>
-            <section className='flex flex-col flex-grow items-center p-4  w-[80%]'>
-                <CreateFundraiser/>
+            <section className='flex flex-col flex-grow items-center p-4 w-[80%]'>
+                <CreateFundraiser />
                 <ul className='w-full'>
                     {fundraisersData.map((item: IFundraiserCard) => (
                         <FundraiserCard
@@ -81,14 +87,13 @@ const Profile: React.FC = () => {
                             posts={item.posts}
                             amount={item.amount}
                             user_id={item.user_id}
-                            username={username}
+                            username={username || ""}
                             views={item.views}
                             key={item.id}
                             isEdit={true}
                         />
                     ))}
                 </ul>
-
             </section>
         </main>
     );
