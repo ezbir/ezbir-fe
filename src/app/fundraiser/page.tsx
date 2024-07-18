@@ -2,14 +2,14 @@
 import React, {useEffect, useState} from "react";
 import axios from "axios";
 import FundraiserCard from "@/components/fundraiser/FundraiserCard";
-import {FundraiserData} from "@/components/fundraiser/IFundraiser";
+import {IFundraiserCard} from "@/components/fundraiser/IFundraiser";
 
 
 const Fundraiser: React.FC = () => {
-    const [itemList, setItemList] = useState<FundraiserData[]>([]);
+    const [itemList, setItemList] = useState<IFundraiserCard[]>([]);
 
     useEffect(() => {
-        axios.get<FundraiserData[]>('http://localhost:8080/api/fundraisers/search',)
+        axios.get<IFundraiserCard[]>('http://localhost:8080/api/fundraisers/search',)
             .then(response => {
                 console.log(response.data)
                 const data = response.data.map(el => ({
