@@ -10,34 +10,34 @@ import FundraiserCard from "@/components/fundraiser/FundraiserCard";
 import {IFundraiserCard} from "@/components/fundraiser/IFundraiser";
 import Link from "next/link";
 
-const Profile: React.FC = () =>{
+const Profile: React.FC = () => {
     const router = useRouter();
     const [fundraisersData, setFundraisersData] = useState<IFundraiserCard[]>([]);
 
-
     useEffect(() => {
-        const token: string | null = sessionStorage.getItem('auth_token');
-        if (!token) {
-            router.push('/auth/login');
-        } else {
-            try {
-                const storedFundraisers = sessionStorage.getItem('fundraiser');
-                if (storedFundraisers) {
-                    setFundraisersData(JSON.parse(storedFundraisers));
+        if (typeof window !== 'undefined') {
+            const token: string | null = sessionStorage.getItem('auth_token');
+            if (!token) {
+                router.push('/auth/login');
+            } else {
+                try {
+                    const storedFundraisers = sessionStorage.getItem('fundraiser');
+                    if (storedFundraisers) {
+                        setFundraisersData(JSON.parse(storedFundraisers));
+                    }
+                } catch (error) {
+                    console.error('Failed to parse fundraiser data:', error);
+                    setFundraisersData([]);
                 }
-            } catch (error) {
-                console.error('Failed to parse fundraiser data:', error);
-                setFundraisersData([]);
             }
         }
     }, [router]);
 
-    const username = sessionStorage.getItem('username') ?? '';
-    const email = sessionStorage.getItem('email') ?? '';
-    const infoAboutYourself = sessionStorage.getItem('infoAboutYourself') ?? '';
+    const username = typeof window !== 'undefined' ? sessionStorage.getItem('username') ?? '' : '';
+    const email = typeof window !== 'undefined' ? sessionStorage.getItem('email') ?? '' : '';
+    const infoAboutYourself = typeof window !== 'undefined' ? sessionStorage.getItem('infoAboutYourself') ?? '' : '';
 
-
-    return(
+    return (
         <main className='flex flex-col  items-center'>
             <section className='flex flex-grow p-4 w-[80%] mt-4'>
                 <section>
@@ -70,22 +70,22 @@ const Profile: React.FC = () =>{
             <section className='flex flex-col flex-grow items-center p-4  w-[80%]'>
                 <CreateFundraiser/>
                 <ul className='w-full'>
-                    {fundraisersData.map((item:IFundraiserCard) => (
-                            <FundraiserCard
-                                id={item.id}
-                                categories={item.categories}
-                                description={item.description}
-                                is_closed={item.is_closed}
-                                jar_link={item.jar_link}
-                                name={item.name}
-                                posts={item.posts}
-                                amount={item.amount}
-                                user_id={item.user_id}
-                                username={username}
-                                views={item.views}
-                                key={item.id}
-                                isEdit={true}
-                            />
+                    {fundraisersData.map((item: IFundraiserCard) => (
+                        <FundraiserCard
+                            id={item.id}
+                            categories={item.categories}
+                            description={item.description}
+                            is_closed={item.is_closed}
+                            jar_link={item.jar_link}
+                            name={item.name}
+                            posts={item.posts}
+                            amount={item.amount}
+                            user_id={item.user_id}
+                            username={username}
+                            views={item.views}
+                            key={item.id}
+                            isEdit={true}
+                        />
                     ))}
                 </ul>
 

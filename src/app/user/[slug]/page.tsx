@@ -5,10 +5,10 @@ import { Avatar } from "antd";
 import FundraiserCard from "@/components/fundraiser/FundraiserCard";
 
 //user imports
-import {FundraiserData} from "@/components/fundraiser/IFundraiser";
+import {IFundraiserCard} from "@/components/fundraiser/IFundraiser";
 
 interface UserPageData {
-    fundraiserList: FundraiserData[];
+    fundraiserList: IFundraiserCard[];
     infoAboutYourself: string;
     photoUrl: string;
     userId: number;

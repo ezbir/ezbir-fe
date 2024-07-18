@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
-import {FundraiserCategory} from "@/components/fundraiser/FundraiserCard";
+import {FundraiserCategory} from "@/components/fundraiser/FundraiserCategoryEnum";
 
 interface FundraiserData {
     cards: string[],
