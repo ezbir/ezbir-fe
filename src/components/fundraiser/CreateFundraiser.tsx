@@ -24,8 +24,7 @@ const CreateFundraiser: React.FC = (props) =>{
         setOpen(false);
     };
 
-    const onSubmit = (e: FormEvent<HTMLFormElement>, data:IFundraiserForm) => {
-        e.preventDefault()
+    const onSubmit = (data:IFundraiserForm) => {
         onCreateFundraiser(data)
     };
     return(

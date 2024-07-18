@@ -1,3 +1,5 @@
+import { UseFormRegister, UseFormHandleSubmit, Control, UseFormSetValue } from "react-hook-form";
+
 export interface IFundraiserCard {
     id: number,
     categories: string[],
@@ -14,19 +16,21 @@ export interface IFundraiserCard {
     isEdit?: boolean,
 }
 
-export interface IFundraiserEdit {
+export interface IFundraiserForm {
     amount: number,
     name: string,
     jar_link: string,
     description: string,
-    is_closed: boolean,
+    is_closed?: boolean,
     categories: string[],
     id: number,
 }
-export interface IFundraiserForm{
-    name: string,
-    amount: number,
-    description: string,
-    categories: string[],
-    jar_link: string
+
+export interface IFundraiserFormProps {
+    id?: string;
+    submit: (data: IFundraiserForm) => void;
+    register: UseFormRegister<IFundraiserForm>;
+    handleSubmit: UseFormHandleSubmit<IFundraiserForm>;
+    control: Control<IFundraiserForm>;
+    values: UseFormSetValue<IFundraiserForm>;
 }
