@@ -1,9 +1,8 @@
-import {Controller, useForm} from "react-hook-form";
-import Select, {StylesConfig} from "react-select";
-import {options} from "@/components/fundraiser/CreateFundraiserForm";
-import {IFundraiserForm, IFundraiserFormProps} from "@/components/fundraiser/IFundraiser";
-import {FormEvent} from "react";
-
+import React, { useEffect } from "react";
+import { Controller, useForm } from "react-hook-form";
+import Select, { StylesConfig } from "react-select";
+import { IFundraiserForm, IFundraiserFormProps } from "@/components/fundraiser/IFundraiser";
+import { options } from "@/components/fundraiser/CreateFundraiserForm";
 
 const customStyles: StylesConfig = {
     control: (provided, state) => ({
@@ -20,19 +19,43 @@ const customStyles: StylesConfig = {
     }),
 };
 
+const FundraiserForm: React.FC<IFundraiserFormProps> = ({ initialValues, submit, register, handleSubmit, control, values, onCloseForm }) => {
+    useEffect(() => {
+        if (initialValues) {
+            if (initialValues.name !== undefined) {
+                values("name", initialValues.name);
+            }
+            if (initialValues.amount !== undefined) {
+                values("amount", initialValues.amount);
+            }
+            if (initialValues.jar_link !== undefined) {
+                values("jar_link", initialValues.jar_link);
+            }
+            if (initialValues.categories !== undefined) {
+                values("categories", initialValues.categories);
+            }
+            if (initialValues.description !== undefined) {
+                values("description", initialValues.description);
+            }
+        }
+    }, [initialValues, values]);
 
-const FundraiserForm: React.FC<IFundraiserFormProps> = ({id, submit, register, handleSubmit, control, values}) =>{
-    let inputStyle: string = 'w-full bg-gray-200 border-black text-2xl p-4 m-1';
+    const inputStyle: string = 'w-full bg-gray-200 border-black text-2xl p-4 m-1';
 
-    const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        handleSubmit((data: IFundraiserForm) => {
-            submit(data);
-        })(e);
+    const onSubmit = (data: IFundraiserForm) => {
+        submit(data);
+    };
+
+    const onClose = () => {
+        onCloseForm();
+    };
+
+    const onButtonClick = () => {
+        handleSubmit(onSubmit)();
     };
 
     return (
-        <form id={id} onSubmit={onSubmit}>
+        <form>
             <section className="flex justify-around">
                 <label className='w-full m-1'>
                     Назва Збору:
@@ -64,7 +87,7 @@ const FundraiserForm: React.FC<IFundraiserFormProps> = ({id, submit, register, h
                 <Controller
                     name="categories"
                     control={control}
-                    render={({field}) => (
+                    render={({ field }) => (
                         <Select
                             {...field}
                             options={options}
@@ -72,7 +95,7 @@ const FundraiserForm: React.FC<IFundraiserFormProps> = ({id, submit, register, h
                             styles={customStyles}
                             placeholder="Оберіть одну або декілька категорій"
                             value={options.filter(option => field.value?.includes(option.value))}
-                            onChange={(selectedOptions) => field.onChange(selectedOptions.map((option: any) => option.value))}
+                            onChange={(selectedOptions) => field.onChange(selectedOptions ? selectedOptions.map((option: any) => option.value) : [])}
                         />
                     )}
                 />
@@ -84,6 +107,19 @@ const FundraiserForm: React.FC<IFundraiserFormProps> = ({id, submit, register, h
                           {...register("description")}
                 />
             </label>
+            <section className='flex justify-end'>
+                <button
+                    className="border border-red-500 hover:border-red-600 text-red-500 py-2 px-4 m-2 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
+                    onClick={onClose} type='button'>
+                    Скасувати
+                </button>
+                <button
+                    className="border border-green-500 hover:border-green-600 text-green-500 py-2 px-4 m-2 rounded-md shadow-md transition duration-300 ease-in-out transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50"
+                    type='button'
+                    onClick={onButtonClick}>
+                    Зберегти
+                </button>
+            </section>
         </form>
     );
 };
