@@ -27,10 +27,11 @@ export interface IFundraiserForm {
 }
 
 export interface IFundraiserFormProps {
-    id?: string;
     submit: (data: IFundraiserForm) => void;
+    onCloseForm: () => void;
     register: UseFormRegister<IFundraiserForm>;
     handleSubmit: UseFormHandleSubmit<IFundraiserForm>;
     control: Control<IFundraiserForm>;
     values: UseFormSetValue<IFundraiserForm>;
+    initialValues?: Partial<IFundraiserForm> | null;
 }

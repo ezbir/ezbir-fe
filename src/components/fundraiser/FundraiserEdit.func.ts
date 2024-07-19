@@ -15,7 +15,7 @@ export const onDeleteFundraiser = (id: number) => {
                 const fundraisers = JSON.parse(storedFundraisers) as IFundraiserCard[];
                 const updatedFundraisers = fundraisers.filter(fundraiser => fundraiser.id !== id);
                 window.sessionStorage.setItem('fundraiser', JSON.stringify(updatedFundraisers));
-                // window.location.reload();
+                window.location.reload();
             }
         })
         .catch(error => {
@@ -23,9 +23,9 @@ export const onDeleteFundraiser = (id: number) => {
         });
 };
 
-export const onEditFundraiser = (data:IFundraiserForm) =>{
-    debugger
-    axios.post(`http://localhost:8080/api/fundraisers/${data.id}/update`,{
+export const onEditFundraiser = (data:IFundraiserForm, id:number) =>{
+
+    axios.patch(`http://localhost:8080/api/fundraisers/${id}/update`,{
         amount: data.amount,
         name: data.name,
         jar_link: data.jar_link,
@@ -40,6 +40,7 @@ export const onEditFundraiser = (data:IFundraiserForm) =>{
     })
         .then(response =>{
             console.log(response)
+            window.location.reload();
         })
         .catch(error =>{
             console.log(error)
