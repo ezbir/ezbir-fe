@@ -9,7 +9,7 @@ const Fundraiser: React.FC = () => {
     const [itemList, setItemList] = useState<IFundraiserCard[]>([]);
 
     useEffect(() => {
-        axios.get<IFundraiserCard[]>('http://localhost:8080/api/fundraisers/search',)
+        axios.get<IFundraiserCard[]>('http://13.60.12.224:80/api/fundraisers/search',)
             .then(response => {
                 console.log(response.data)
                 const data = response.data.map(el => ({

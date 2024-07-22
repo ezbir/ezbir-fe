@@ -17,7 +17,7 @@ export const CheckCode: React.FC = () => {
 
     useEffect(() => {
         if (redirect) {
-            window.location.href = "/login";
+            window.location.href = "/auth/login";
         }
     }, [redirect]);
 

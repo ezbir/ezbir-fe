@@ -5,7 +5,7 @@ export const onLoginSubmit = (
     password: string,
     setError: (error:string) => void
 ) => {
-    axios.post('http://localhost:8080/api/auth/login', {
+    axios.post('http://13.60.12.224:80/api/auth/login', {
             email: email,
             password: password
         }, {
