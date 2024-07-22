@@ -2,7 +2,7 @@ import axios from "axios";
 import {IFundraiserCard, IFundraiserForm} from "@/components/fundraiser/IFundraiser";
 
 export const onDeleteFundraiser = (id: number) => {
-    axios.delete(`http://localhost:8080/api/fundraisers/${id}`, {
+    axios.delete(`http://13.60.12.224:80/api/fundraisers/${id}`, {
         headers: {
             Authorization: `Bearer ${window.sessionStorage.getItem('auth_token')}`,
         },
@@ -25,7 +25,7 @@ export const onDeleteFundraiser = (id: number) => {
 
 export const onEditFundraiser = (data:IFundraiserForm, id:number) =>{
 
-    axios.patch(`http://localhost:8080/api/fundraisers/${id}/update`,{
+    axios.patch(`http://13.60.12.224:80/api/fundraisers/${id}/update`,{
         amount: data.amount,
         name: data.name,
         jar_link: data.jar_link,

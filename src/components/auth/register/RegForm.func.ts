@@ -7,7 +7,7 @@ export const onRegSubmit = (
     repeatPassword: string,
     showModal: () => void
 ) => {
-    axios.post('http://localhost:8080/api/auth/register', {
+    axios.post('http://13.60.12.224:80/api/auth/register', {
         username: username,
         email: email,
         password: password,
