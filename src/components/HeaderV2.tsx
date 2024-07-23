@@ -9,11 +9,11 @@ const HeaderV2: React.FC = () =>{
                 </Link>
 
                 <section className='flex-grow'>
-                    <h1 className='float-right flex items-center'>
-                    <span className='bg-black text-white text-[36px] pt-3 pb-3 pl-3 pr-3   rounded-[18px]'>
+                    <h1 className='float-right'>
+                    <span className='bg-black text-white text-[56px] pt-2 pb-2 pl-5 pr-5 m-2  rounded-[20px]'>
                         Є
                     </span>
-                        <span className='text-[36px] m-2'>
+                        <span className='text-[56px] m-2'>
                         Збір
                     </span>
                     </h1>

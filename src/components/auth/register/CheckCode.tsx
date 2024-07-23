@@ -24,15 +24,15 @@ export const CheckCode: React.FC = () => {
     return (
         <form id='checkCode' onSubmit={onSubmit}>
             <h4>Перевірка пошти</h4>
-            <p className='text-gray-500'>Будь ласка введіть код підтвердження з електроної пошти</p>
-            <input className='w-full border-b-2 border-black p-1 mt-3'
+            <p className='text-gray-500 mt-2'>Будь ласка введіть код підтвердження з електроної пошти</p>
+            <input className='w-full border-b-2 border-black p-1 mt-3 flex text-xl text-center'
                    type="text"
                    placeholder='1234567890'
                    value={code}
                    onChange={onCodeChange}
             />
-            {error ? <p className='text-red-400 flex justify-center'>{error}</p> : ''}
-            <section className='flex justify-center'>
+            {error ? <p className='text-red-400 text-xl flex justify-center mt-2'>{error}</p> : ''}
+            <section className='flex justify-center mt-1'>
                 <button className='mt-3 border-2 pt-2 pb-2 pl-4 pr-4 rounded-[40px] bg-black text-white' type="submit">Відправити</button>
             </section>
         </form>

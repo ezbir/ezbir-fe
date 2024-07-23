@@ -1,15 +1,18 @@
 import axios from "axios";
 
+export interface ILoginForm {
+    email: string;
+    password: string;
+}
+
 export const onLoginSubmit = (
-    email:string,
-    password: string,
-    setError: (error:string) => void
+    data:ILoginForm
 ) => {
     axios.post('http://13.60.12.224:80/api/auth/login', {
-            email: email,
-            password: password
+            email: data.email,
+            password: data.password
         }, {
-            withCredentials: true, /* Дозволяє передачу сесійних куки */
+            withCredentials: true,
         }
     )
         .then((response) => {
@@ -20,15 +23,12 @@ export const onLoginSubmit = (
             window.sessionStorage.setItem('photoUrl', response.data.photoUrl)
             window.sessionStorage.setItem('fundraiser', JSON.stringify(response.data.fundraisers))
             window.sessionStorage.setItem('id', response.data.id)
-            window.sessionStorage.setItem('email', email)
+            window.sessionStorage.setItem('email', data.email)
             if (response.status === 200) {
                 window.location.href = '/profile';
             }
         })
         .catch((error) => {
             console.log(error)
-            if(error.response.status = 401){
-                setError('Неправильний логін або пароль')
-            }
         })
 }
