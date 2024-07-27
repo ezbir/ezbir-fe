@@ -7,6 +7,7 @@ import CreateFundraiser from "@/components/fundraiser/CreateFundraiser";
 import FundraiserCard from "@/components/fundraiser/FundraiserCard";
 import { IFundraiserCard } from "@/components/fundraiser/IFundraiser";
 import Link from "next/link";
+import ChangeableAvatar from "@/components/ChangeableAvatar";
 
 const Profile: React.FC = () => {
     const router = useRouter();
@@ -47,7 +48,7 @@ const Profile: React.FC = () => {
         <main className='flex flex-col items-center'>
             <section className='flex flex-grow p-4 w-[80%] mt-4'>
                 <section>
-                    <Avatar shape="square" size={256} icon={<img src='/img/userIcon.svg' alt="avatar" />} />
+                    <ChangeableAvatar />
                 </section>
                 <section className='flex flex-col pl-4'>
                     <p>
