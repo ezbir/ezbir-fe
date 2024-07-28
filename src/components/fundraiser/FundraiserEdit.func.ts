@@ -2,7 +2,7 @@ import axios from "axios";
 import {IFundraiserCard, IFundraiserForm} from "@/components/fundraiser/IFundraiser";
 
 export const onDeleteFundraiser = (id: number) => {
-    axios.delete(`http://13.60.12.224:80/api/fundraisers/${id}`, {
+    axios.delete(`http://13.60.12.224:8080/api/fundraisers/${id}`, {
         headers: {
             Authorization: `Bearer ${window.sessionStorage.getItem('auth_token')}`,
         },

@@ -8,7 +8,7 @@ export interface ILoginForm {
 export const onLoginSubmit = (
     data:ILoginForm
 ) => {
-    axios.post('http://13.60.12.224:80/api/auth/login', {
+    axios.post('http://13.60.12.224:8080/api/auth/login', {
             email: data.email,
             password: data.password
         }, {
