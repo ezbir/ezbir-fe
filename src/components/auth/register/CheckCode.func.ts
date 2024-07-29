@@ -5,17 +5,17 @@ export const onCodeSubmit = (
     setRedirect: (el: boolean) => void,
     setError: (error: string) => void
 ) => {
-    axios.post(`http://13.60.12.224:80/api/auth/verify?token=${code}`, {
+    axios.post(`http://13.60.12.224:8080/api/auth/verify?token=${code}`, {
 
     }, { withCredentials: true })
         .then((response) => {
             console.log(response);
-            if(response.status === 200){
+            if (response.status === 200) {
                 setRedirect(true)
             }
         })
         .catch((error) => {
             setError('Неправильний код')
-            setTimeout(() => {setError('')}, 3000)
+            setTimeout(() => { setError('') }, 3000)
         })
 }

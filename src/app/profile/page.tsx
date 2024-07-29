@@ -14,6 +14,7 @@ const Profile: React.FC = () => {
     const [fundraisersData, setFundraisersData] = useState<IFundraiserCard[]>([]);
     const [username, setUsername] = useState<string | null>(null);
     const [email, setEmail] = useState<string | null>(null);
+    const [avatar, setAvatar] = useState<string | null>(null);
     const [infoAboutYourself, setInfoAboutYourself] = useState<string | null>(null);
     const [isClient, setIsClient] = useState(false);
 
@@ -33,6 +34,7 @@ const Profile: React.FC = () => {
                 setUsername(window.sessionStorage.getItem('username'));
                 setEmail(window.sessionStorage.getItem('email'));
                 setInfoAboutYourself(window.sessionStorage.getItem('infoAboutYourself'));
+                setAvatar(window.sessionStorage.getItem('photoUrl'))
             } catch (error) {
                 console.error('Failed to parse fundraiser data:', error);
                 setFundraisersData([]);
@@ -48,7 +50,7 @@ const Profile: React.FC = () => {
         <main className='flex flex-col items-center'>
             <section className='flex flex-grow p-4 w-[80%] mt-4'>
                 <section>
-                    <ChangeableAvatar />
+                    <ChangeableAvatar link={avatar} size={256} />
                 </section>
                 <section className='flex flex-col pl-4'>
                     <p>
