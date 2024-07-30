@@ -3,9 +3,8 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 import { IFundraiserForm } from "@/components/fundraiser/IFundraiser";
-import { options } from "@/components/fundraiser/CreateFundraiserForm";
 import FundraiserForm from "@/components/fundraiser/FundraiserForm";
-import {onDeleteFundraiser} from "@/components/fundraiser/FundraiserEdit.func";
+import {onDeleteFundraiser} from "@/components/fundraiser/edit-fundraiser/FundraiserEdit.func";
 
 interface FundraiserFormProps extends IFundraiserForm {
     submit: (data: IFundraiserForm) => void,

@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Avatar } from "antd";
-import CreateFundraiser from "@/components/fundraiser/CreateFundraiser";
+import CreateFundraiser from "@/components/fundraiser/create-fundraiser/CreateFundraiser";
 import FundraiserCard from "@/components/fundraiser/FundraiserCard";
 import { IFundraiserCard } from "@/components/fundraiser/IFundraiser";
 import Link from "next/link";

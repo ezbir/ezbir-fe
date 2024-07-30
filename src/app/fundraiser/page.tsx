@@ -3,35 +3,22 @@ import React, {useEffect, useState} from "react";
 import axios from "axios";
 import FundraiserCard from "@/components/fundraiser/FundraiserCard";
 import {IFundraiserCard} from "@/components/fundraiser/IFundraiser";
+import {getAllFundraiser} from "@/components/fundraiser/Fundraiser";
 
 
 const Fundraiser: React.FC = () => {
-    const [itemList, setItemList] = useState<IFundraiserCard[]>([]);
+    const [fundraisers, setFundraisers] = useState<IFundraiserCard[]>([]);
 
-    useEffect(() => {
-        axios.get<IFundraiserCard[]>('http://13.60.12.224:80/api/fundraisers/search',)
-            .then(response => {
-                console.log(response.data)
-                const data = response.data.map(el => ({
-                    categories: el.categories,
-                    description: el.description,
-                    is_closed: el.is_closed,
-                    jar_link: el.jar_link,
-                    name: el.name,
-                    posts: el.posts,
-                    amount: el.amount,
-                    user_id: el.user_id,
-                    id: el.id,
-                    username: el.username,
-                    views: el.views,
-                }));
-                setItemList(data);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    }, []);
+    const fetchFundraisers = async () => {
+        try {
+            const data = await getAllFundraiser();
+            setFundraisers(data);
+        } catch (error) {
+            console.error('Error fetching fundraisers:', error);
+        }
+    };
 
+    fetchFundraisers();
     return (
         <section className='flex justify-center'>
             <section className='w-[80%]'>
@@ -53,13 +40,13 @@ const Fundraiser: React.FC = () => {
                         </label>
                     </section>
                     <section>
-                        <h4 className='text-gray-700'>Всього зборів : {itemList.length}</h4>
+                        <h4 className='text-gray-700'>Всього зборів : {fundraisers.length}</h4>
                     </section>
                 </section>
 
 
                 <ul className='w-full mt-10'>
-                    {itemList.map(item => (
+                    {fundraisers.map(item => (
                         <FundraiserCard
                             id={item.id}
                             categories={item.categories}

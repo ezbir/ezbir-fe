@@ -1,8 +1,8 @@
 import {FormEvent, useState} from "react";
 import {Drawer, Space} from "antd";
-import {onCreateFundraiser} from "@/components/fundraiser/CreateFundraiser.func";
+import {onCreateFundraiser} from "@/components/fundraiser/create-fundraiser/CreateFundraiser.func";
 import {IFundraiserForm} from "@/components/fundraiser/IFundraiser";
-import CreateFundraiserForm from "@/components/fundraiser/CreateFundraiserForm";
+import CreateFundraiserForm from "@/components/fundraiser/create-fundraiser/CreateFundraiserForm";
 
 export interface formData {
     name: string,

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Select, { StylesConfig } from "react-select";
 import { IFundraiserForm, IFundraiserFormProps } from "@/components/fundraiser/IFundraiser";
-import { options } from "@/components/fundraiser/CreateFundraiserForm";
+import { FundraiserOptions } from "@/components/fundraiser/Fundraiser";
 
 const customStyles: StylesConfig = {
     control: (provided, state) => ({
@@ -115,12 +115,12 @@ const FundraiserForm: React.FC<IFundraiserFormProps> = ({ initialValues, submit,
                     render={({field}) => (
                         <Select
                             {...field}
-                            options={options}
+                            options={FundraiserOptions}
                             isMulti
                             styles={customStyles}
                             placeholder="Оберіть одну або декілька категорій"
                             id="floating_standard"
-                            value={options.filter(option => field.value?.includes(option.value))}
+                            value={FundraiserOptions.filter(option => field.value?.includes(option.value))}
                             onChange={(selectedOptions) => field.onChange(selectedOptions ? selectedOptions.map((option: any) => option.value) : [])}
                         />
                     )}

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import {IFundraiserCard} from "@/components/fundraiser/IFundraiser";
-import {FundraiserCategory} from "@/components/fundraiser/FundraiserCategoryEnum";
-import FundraiserEdit from "@/components/fundraiser/FundraiserEdit";
+import {FundraiserCategory} from "@/components/fundraiser/Fundraiser";
+import FundraiserEdit from "@/components/fundraiser/edit-fundraiser/FundraiserEdit";
 
 
 const FundraiserCard: React.FC<IFundraiserCard> = (
