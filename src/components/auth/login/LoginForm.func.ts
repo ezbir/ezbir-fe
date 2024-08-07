@@ -13,8 +13,7 @@ export const onLoginSubmit = (
         password: data.password
     }, {
         withCredentials: true,
-    }
-    )
+    })
         .then((response) => {
             console.log(response)
             window.sessionStorage.setItem('auth_token', response.data.token)
