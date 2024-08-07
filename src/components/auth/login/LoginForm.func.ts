@@ -20,7 +20,7 @@ export const onLoginSubmit = (
             window.sessionStorage.setItem('auth_token', response.data.token)
             window.sessionStorage.setItem('username', response.data.username)
             window.sessionStorage.setItem('infoAboutYourself', response.data.infoAboutYourself)
-            window.sessionStorage.setItem('photoUrl', response.data.photo_url)
+            window.sessionStorage.setItem('photo_url', response.data.photo_url)
             window.sessionStorage.setItem('fundraiser', JSON.stringify(response.data.fundraisers))
             window.sessionStorage.setItem('id', response.data.id)
             window.sessionStorage.setItem('email', data.email)
