@@ -10,12 +10,12 @@ export const onCodeSubmit = (
     }, { withCredentials: true })
         .then((response) => {
             console.log(response);
-            if(response.status === 200){
+            if (response.status === 200) {
                 setRedirect(true)
             }
         })
         .catch((error) => {
             setError('Неправильний код')
-            setTimeout(() => {setError('')}, 3000)
+            setTimeout(() => { setError('') }, 3000)
         })
 }

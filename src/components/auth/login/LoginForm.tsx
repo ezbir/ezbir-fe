@@ -3,7 +3,7 @@
 import Button from "@/components/Button";
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import {ILoginForm, onLoginSubmit} from "@/components/auth/login/LoginForm.func";
+import { ILoginForm, onLoginSubmit } from "@/components/auth/login/LoginForm.func";
 
 
 const LoginForm: React.FC = (props) => {
@@ -21,10 +21,10 @@ const LoginForm: React.FC = (props) => {
         <form onSubmit={handleSubmit(onSubmit)}>
             <section className="relative z-0 w-full ml-1 mt-2">
                 <input className={inputStyle}
-                       id="floating_standard"
-                       type="text"
-                       placeholder=' '
-                       {...register("email")}
+                    id="floating_standard"
+                    type="text"
+                    placeholder=' '
+                    {...register("email")}
                 />
                 <label htmlFor="floating_standard" className={labelStyle}>
                     Електронна пошта:
@@ -33,10 +33,10 @@ const LoginForm: React.FC = (props) => {
 
             <section className="relative z-0 w-full ml-1 mt-2">
                 <input className={inputStyle}
-                       id="floating_standard"
-                       type="password"
-                       placeholder=' '
-                       {...register("password")}
+                    id="floating_standard"
+                    type="password"
+                    placeholder=' '
+                    {...register("password")}
                 />
                 <label htmlFor="floating_standard" className={labelStyle}>
                     Пароль:
@@ -45,7 +45,7 @@ const LoginForm: React.FC = (props) => {
 
             <section className='flex justify-center mt-10'>
                 <button type='submit'
-                        className="text-xl border-black border-b-2 p-3 w-[200px] flex justify-center hover:scale-110 duration-100">
+                    className="text-xl border-black border-b-2 p-3 w-[200px] flex justify-center hover:scale-110 duration-100">
                     Увійти
                 </button>
             </section>

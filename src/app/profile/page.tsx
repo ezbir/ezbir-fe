@@ -7,12 +7,15 @@ import CreateFundraiser from "@/components/fundraiser/CreateFundraiser";
 import FundraiserCard from "@/components/fundraiser/FundraiserCard";
 import { IFundraiserCard } from "@/components/fundraiser/IFundraiser";
 import Link from "next/link";
+import ChangeableAvatar from "@/components/profile/UploadAvatar";
+import UploadAvatar from "@/components/profile/UploadAvatar";
 
 const Profile: React.FC = () => {
     const router = useRouter();
     const [fundraisersData, setFundraisersData] = useState<IFundraiserCard[]>([]);
     const [username, setUsername] = useState<string | null>(null);
     const [email, setEmail] = useState<string | null>(null);
+    const [photoUrl, setPhotoUrl] = useState<string | null>(null);
     const [infoAboutYourself, setInfoAboutYourself] = useState<string | null>(null);
     const [isClient, setIsClient] = useState(false);
 
@@ -27,11 +30,11 @@ const Profile: React.FC = () => {
                 const storedFundraisers = window.sessionStorage.getItem('fundraiser');
                 if (storedFundraisers) {
                     setFundraisersData(JSON.parse(storedFundraisers));
-
                 }
                 setUsername(window.sessionStorage.getItem('username'));
                 setEmail(window.sessionStorage.getItem('email'));
                 setInfoAboutYourself(window.sessionStorage.getItem('infoAboutYourself'));
+                setPhotoUrl(window.sessionStorage.getItem('photo_url'))
             } catch (error) {
                 console.error('Failed to parse fundraiser data:', error);
                 setFundraisersData([]);
@@ -47,25 +50,21 @@ const Profile: React.FC = () => {
         <main className='flex flex-col items-center'>
             <section className='flex flex-grow p-4 w-[80%] mt-4'>
                 <section>
-                    <Avatar shape="square" size={256} icon={<img src='/img/userIcon.svg' alt="avatar" />} />
+                    <UploadAvatar link={photoUrl!}/>
                 </section>
-                <section className='flex flex-col pl-4'>
-                    <p>
-                        Імʼя:
-                        <br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{username}
-                    </p>
+                <section className='flex flex-col pl-4 w-full'>
+                    <h3>{username}</h3>
                     <br />
                     <p>
                         Електронна пошта:
                         <br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{email}
+                        <p className='pl-5'>{email}</p>
                     </p>
                     <br />
                     <p>
                         Про себе:
                         <br />
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{infoAboutYourself}
+                        <p className='pl-5'>{infoAboutYourself}</p>
                     </p>
                 </section>
                 <Link href='/setting/account' className='flex-grow flex justify-end h-full'>

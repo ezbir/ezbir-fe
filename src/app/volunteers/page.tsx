@@ -1,6 +1,6 @@
 'use client'
 import axios from "axios";
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import VolunteerCard from "@/components/VolunteerCard";
 
 interface Volunteer {
@@ -12,12 +12,12 @@ interface Volunteer {
     views: number
 }
 
-const Volunteers: React.FC = (props) =>{
+const Volunteers: React.FC = (props) => {
 
     const [users, setUsers] = useState<Volunteer[]>([])
 
     useEffect(() => {
-        axios.get("http://13.60.12.224:80/api/user/all")
+        axios.get("http://13.60.12.224:8080/api/user/all")
             .then(response => {
                 setUsers(response.data);
             })
@@ -26,12 +26,12 @@ const Volunteers: React.FC = (props) =>{
             });
     }, []);
 
-    return(
+    return (
         <main>
             <section>
                 <input className='w-full border-2 border-black rounded-2xl p-1 mt-3 mb-3'
-                       placeholder="Пошук Волонтера"
-                       type="search"/>
+                    placeholder="Пошук Волонтера"
+                    type="search" />
             </section>
             <section>
                 {users.map(user => (
