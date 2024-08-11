@@ -7,18 +7,22 @@ import {getAllFundraiser} from "@/components/fundraiser/Fundraiser";
 
 
 const Fundraiser: React.FC = () => {
-    const [fundraisers, setFundraisers] = useState<IFundraiserCard[]>([]);
+    const [fundraisers, setFundraisers] = useState<IFundraiserCard[]>();
 
-    const fetchFundraisers = async () => {
-        try {
-            const data = await getAllFundraiser();
-            setFundraisers(data);
-        } catch (error) {
-            console.error('Error fetching fundraisers:', error);
+    useEffect(() => {
+        const fetchFundraisers = async () => {
+            try {
+                const data  = await getAllFundraiser();
+                console.log(data)
+                setFundraisers(data);
+            } catch (error) {
+                console.error('Error fetching fundraisers:', error);
+            }
         }
-    };
+            fetchFundraisers();
+    }, []);
 
-    fetchFundraisers();
+
     return (
         <section className='flex justify-center'>
             <section className='w-[80%]'>
@@ -40,13 +44,13 @@ const Fundraiser: React.FC = () => {
                         </label>
                     </section>
                     <section>
-                        <h4 className='text-gray-700'>Всього зборів : {fundraisers.length}</h4>
+                        <h4 className='text-gray-700'>Всього зборів : {fundraisers?.length ?? "0"}</h4>
                     </section>
                 </section>
 
 
                 <ul className='w-full mt-10'>
-                    {fundraisers.map(item => (
+                    {fundraisers?.map(item => (
                         <FundraiserCard
                             id={item.id}
                             categories={item.categories}

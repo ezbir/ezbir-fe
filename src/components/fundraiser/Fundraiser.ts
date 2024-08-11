@@ -31,9 +31,10 @@ export const FundraiserOptions = [
     { value: 'OTHER', label: 'Інше' },
 ];
 
-export const getAllFundraiser = async (): Promise<IFundraiserCard[]> => {
+export const getAllFundraiser = async () => {
     try {
-        const response = await axios.get<IFundraiserCard[]>('http://13.60.12.224:8080/api/fundraisers/search');
+        const response = await axios.get<IFundraiserCard[]>('https://ezbir.org/api/fundraisers/search');
+        console.log(response)
         return response.data.map(el => ({
             categories: el.categories,
             description: el.description,
@@ -48,7 +49,6 @@ export const getAllFundraiser = async (): Promise<IFundraiserCard[]> => {
             views: el.views,
         }));
     } catch (error) {
-        console.log(error);
-        throw error; // Якщо є помилка, ви можете або обробити її, або знову кинути
+        console.log(error)
     }
 }

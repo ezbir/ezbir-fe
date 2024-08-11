@@ -17,7 +17,7 @@ const Volunteers: React.FC = (props) =>{
     const [users, setUsers] = useState<Volunteer[]>([])
 
     useEffect(() => {
-        axios.get("http://13.60.12.224:80/api/user/all")
+        axios.get("https://ezbir.org/api/user/all")
             .then(response => {
                 setUsers(response.data);
             })

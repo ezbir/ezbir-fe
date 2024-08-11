@@ -5,7 +5,7 @@ export const onCodeSubmit = (
     setRedirect: (el: boolean) => void,
     setError: (error: string) => void
 ) => {
-    axios.post(`http://13.60.12.224:80/api/auth/verify?token=${code}`, {
+    axios.post(`https://ezbir.org/api/auth/verify?token=${code}`, {
 
     }, { withCredentials: true })
         .then((response) => {
