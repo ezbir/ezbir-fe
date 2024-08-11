@@ -11,7 +11,7 @@ export const onUploadAvatar = ({file, link, setImgUrl}: IUploadAvatar) => {
     const formData = new FormData();
     formData.append("picture", file);
 
-    axios.post('http://13.60.12.224:8080/api/user/upload-picture', formData, {
+    axios.post('https://ezbir.org/api/user/upload-picture', formData, {
         withCredentials: true,
         headers: {
             Authorization: `Bearer ${window.sessionStorage.getItem('auth_token')}`,

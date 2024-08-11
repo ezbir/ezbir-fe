@@ -2,7 +2,7 @@ import axios from "axios";
 import { IFundraiserForm } from "@/components/fundraiser/IFundraiser";
 
 export const onCreateFundraiser = (data: IFundraiserForm) => {
-    axios.post('http://13.60.12.224:8080/api/fundraisers/add', data, {
+    axios.post('https://ezbir.org/api/fundraisers/add', data, {
         headers: {
             Authorization: `Bearer ${window.sessionStorage.getItem('auth_token')}`,
         },
