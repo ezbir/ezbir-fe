@@ -1,11 +1,11 @@
 'use client'
 
-import Button from "@/components/Button";
 import React, {useState} from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { Modal } from 'antd';
 import { CheckCode } from "@/components/auth/register/CheckCode";
 import {IRegForm, onRegSubmit} from "@/components/auth/register/RegForm.func";
+import Input from "@/components/input/Input";
 
 
 
@@ -35,53 +35,30 @@ export const RegForm: React.FC = (props) => {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <section className="relative z-0 w-full ml-1 mt-3">
-                <input className={inputStyle}
-                       id="floating_standard"
-                       type="text"
-                       placeholder=' '
-                       {...register("username")}
-                />
-                <label htmlFor="floating_standard" className={labelStyle}>
-                    Прізвище та Імʼя:
-                </label>
-            </section>
+            <Input type="text"
+                   register={register}
+                   name="username"
+                   label="Прізвище та Імʼя: "
+            />
 
-            <section className="relative z-0 w-full ml-1 mt-3">
-                <input className={inputStyle}
-                       id="floating_standard"
-                       type="email"
-                       placeholder=' '
-                       {...register("email")}
-                />
-                <label htmlFor="floating_standard" className={labelStyle}>
-                    Електронна пошта:
-                </label>
-            </section>
+            <Input type="email"
+                   register={register}
+                   name="email"
+                   label="Електронна пошта: "
+            />
 
-            <section className="relative z-0 w-full ml-1 mt-3">
-                <input className={inputStyle}
-                       id="floating_standard"
-                       type="password"
-                       placeholder=' '
-                       {...register("password")}
-                />
-                <label htmlFor="floating_standard" className={labelStyle}>
-                    Пароль:
-                </label>
-            </section>
+            <Input type="password"
+                   register={register}
+                   name="password"
+                   label="Пароль: "
+            />
 
-            <section className="relative z-0 w-full ml-1 mt-3">
-                <input className={inputStyle}
-                       id="floating_standard"
-                       type="password"
-                       placeholder=' '
-                       {...register("repeatPassword")}
-                />
-                <label htmlFor="floating_standard" className={labelStyle}>
-                    Повторіть пароль:
-                </label>
-            </section>
+            <Input type="password"
+                   register={register}
+                   name="repeatPassword"
+                   label="Повторіть пароль: "
+            />
+
             <Modal
                 open={isModalOpen}
                 onOk={handleOk}
@@ -92,7 +69,7 @@ export const RegForm: React.FC = (props) => {
             </Modal>
             <section className='flex justify-center mt-10'>
                 <button type='submit'
-                        className="text-xl border-black border-b-2 p-3 w-[200px] flex justify-center hover:scale-110 duration-100">
+                        className="text-xl border-black border-b-2 p-3 w-[300px] flex justify-center hover:scale-110 duration-100">
                     Зареєструватися
                 </button>
             </section>

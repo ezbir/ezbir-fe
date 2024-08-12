@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "@/app/globals.css";
-import HeaderV2 from "@/components/HeaderV2";
+import HeaderV2 from "@/components/ui/HeaderV2";
 import SettingAside from "@/components/setting/SettingAside";
-import Footer from "@/components/Footer";
+import Footer from "@/components/ui/Footer";
 
 export const metadata: Metadata = {
     title: "ЄЗбір Настройки",
