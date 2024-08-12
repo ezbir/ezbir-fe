@@ -1,8 +1,8 @@
 import axios from "axios";
-import {IFundraiserCard, IFundraiserForm} from "@/components/fundraiser/IFundraiser";
+import { IFundraiserCard, IFundraiserForm } from "@/components/fundraiser/IFundraiser";
 
 export const onDeleteFundraiser = (id: number) => {
-    axios.delete(`http://13.60.12.224:8080/api/fundraisers/${id}`, {
+    axios.delete(`https://ezbir.org/api/fundraisers/${id}`, {
         headers: {
             Authorization: `Bearer ${window.sessionStorage.getItem('auth_token')}`,
         },
@@ -23,26 +23,26 @@ export const onDeleteFundraiser = (id: number) => {
         });
 };
 
-export const onEditFundraiser = (data:IFundraiserForm, id:number) =>{
+export const onEditFundraiser = (data: IFundraiserForm, id: number) => {
 
-    axios.patch(`http://13.60.12.224:80/api/fundraisers/${id}/update`,{
+    axios.patch(`http://13.60.12.224:8080/api/fundraisers/${id}/update`, {
         amount: data.amount,
         name: data.name,
         jar_link: data.jar_link,
         description: data.description,
         is_closed: data.is_closed,
         categories: data.categories
-    },{
+    }, {
         headers: {
             Authorization: `Bearer ${window.sessionStorage.getItem('auth_token')}`,
         },
         withCredentials: true,
     })
-        .then(response =>{
+        .then(response => {
             console.log(response)
             window.location.reload();
         })
-        .catch(error =>{
+        .catch(error => {
             console.log(error)
         })
 }

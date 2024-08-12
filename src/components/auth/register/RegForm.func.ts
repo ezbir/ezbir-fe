@@ -8,21 +8,21 @@ export interface IRegForm {
 }
 
 export const onRegSubmit = (
-    data:IRegForm,
+    data: IRegForm,
     showModal: () => void
 ) => {
-    axios.post('http://13.60.12.224:8080/api/auth/register', {
+    axios.post('https://ezbir.org/api/auth/register', {
         username: data.username,
         email: data.email,
         password: data.password,
         repeatPassword: data.repeatPassword
-    },{ withCredentials: true })
-        .then((response) =>{
+    }, { withCredentials: true })
+        .then((response) => {
             console.log(response)
             showModal()
 
         })
-        .catch((error) =>{
+        .catch((error) => {
             console.log(error)
         })
 }

@@ -6,21 +6,20 @@ export interface ILoginForm {
 }
 
 export const onLoginSubmit = (
-    data:ILoginForm
+    data: ILoginForm
 ) => {
-    axios.post('http://13.60.12.224:8080/api/auth/login', {
-            email: data.email,
-            password: data.password
-        }, {
-            withCredentials: true,
-        }
-    )
+    axios.post('https://ezbir.org/api/auth/login', {
+        email: data.email,
+        password: data.password
+    }, {
+        withCredentials: true,
+    })
         .then((response) => {
-            console.log(response.data)
+            console.log(response)
             window.sessionStorage.setItem('auth_token', response.data.token)
             window.sessionStorage.setItem('username', response.data.username)
             window.sessionStorage.setItem('infoAboutYourself', response.data.infoAboutYourself)
-            window.sessionStorage.setItem('photoUrl', response.data.photoUrl)
+            window.sessionStorage.setItem('photo_url', response.data.photo_url)
             window.sessionStorage.setItem('fundraiser', JSON.stringify(response.data.fundraisers))
             window.sessionStorage.setItem('id', response.data.id)
             window.sessionStorage.setItem('email', data.email)

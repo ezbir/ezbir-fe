@@ -17,10 +17,10 @@ COPY . .
 RUN npm run build
 
 # Встановлення змінного оточення для Next.js
-ENV PORT 80
+ENV PORT 3000
 
-# Викриття порту 80
-EXPOSE 80
+# Викриття порту 3000
+EXPOSE 3000
 
 # Запуск додатку
 CMD ["npm", "start"]

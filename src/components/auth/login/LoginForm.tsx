@@ -2,6 +2,7 @@
 
 import React, {useEffect} from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+
 import {ILoginForm, onLoginSubmit} from "@/components/auth/login/LoginForm.func";
 import Input from "@/components/input/Input";
 
@@ -32,10 +33,9 @@ const LoginForm: React.FC = (props) => {
                    name="password"
                    label="Пароль: "
             />
-
             <section className='flex justify-center mt-10'>
                 <button type='submit'
-                        className="text-xl border-black border-b-2 p-3 w-[200px] flex justify-center hover:scale-110 duration-100">
+                    className="text-xl border-black border-b-2 p-3 w-[200px] flex justify-center hover:scale-110 duration-100">
                     Увійти
                 </button>
             </section>
