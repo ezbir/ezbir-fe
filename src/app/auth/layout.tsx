@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "@/app/globals.css";
-import Header from "@/components/Header";
-import HeaderV2 from "@/components/HeaderV2";
+import Header from "@/components/ui/Header";
+import HeaderV2 from "@/components/ui/HeaderV2";
 import { AuthAside } from "@/components/auth/AuthAside";
-import Footer from "@/components/Footer";
+import Footer from "@/components/ui/Footer";
 
 export const metadata: Metadata = {
     title: "Авторизація єЗбір",

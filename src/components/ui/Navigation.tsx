@@ -8,7 +8,7 @@ const Navigation: React.FC = (props) => {
             {/* Навігація по сторінках */}
             <section className="w-2/3">
                 <ul className='flex justify-around'>
-                    <Link href='/'>Головна</Link>
+                    <Link href='/public'>Головна</Link>
                     <Link href='/fundraiser'>Збори</Link>
                     <Link href='/volunteers'>Волонтери</Link>
                     <Link href='/support'>Підтримка</Link>
