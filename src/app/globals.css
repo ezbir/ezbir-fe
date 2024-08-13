@@ -1,7 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+*, *::before, *::after {
+    box-sizing: border-box;
+}
 *{
     font-family: E-Ukraine;
     font-size: 16px;
@@ -9,7 +11,10 @@
     font-weight: 400;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+
 }
+
 :active, :hover, :focus {
     outline: 0;
     outline-offset: 0;

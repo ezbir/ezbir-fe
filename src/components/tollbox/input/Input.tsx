@@ -1,5 +1,5 @@
 import React from "react";
-import {IInput} from "@/components/input/Input.func";
+import {IInput} from "@/components/tollbox/input/Input.func";
 
 const Input: React.FC<IInput> = ({type,register, name, label}) =>{
     return(

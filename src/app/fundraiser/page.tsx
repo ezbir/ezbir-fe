@@ -9,7 +9,7 @@ const Fundraiser: React.FC = () => {
     const [itemList, setItemList] = useState<IFundraiserCard[]>([]);
 
     useEffect(() => {
-        axios.get<IFundraiserCard[]>('http://13.60.12.224:8080/api/fundraisers/search',)
+        axios.get<IFundraiserCard[]>('https://ezbir.org/api/fundraisers/search',)
             .then(response => {
                 console.log(response.data)
                 const data = response.data.map(el => ({
@@ -43,7 +43,7 @@ const Fundraiser: React.FC = () => {
                         <label className='text-gray-400 text-xl'>
                             Сортувати за: <br />
                             <select name="select" id=""
-                                className='w-[300px] border-b-2 border-black rounded-none text-black'>
+                                className='max-w-48 border-b-2 border-black rounded-none text-black'>
                                 <option value="none_select">Без сортування</option>
                                 <option value="vay">Назвою (від А до Я)</option>
                                 <option value="12">Назвою (від Я до А)</option>
@@ -52,7 +52,7 @@ const Fundraiser: React.FC = () => {
                             </select>
                         </label>
                     </section>
-                    <section>
+                    <section className="hidden md:block">
                         <h4 className='text-gray-700'>Всього зборів : {itemList.length}</h4>
                     </section>
                 </section>

@@ -4,8 +4,8 @@ const HeaderV2: React.FC = () =>{
     return(
         <header className='w-full bg-white p-7 border-b border-black'>
             <section className='flex-grow flex items-center'>
-                <Link className='flex ml-4 w-[400px]' href='/public'>
-                    <h6 className=' hover:border-b hover:border-black'>← Повернутись на сайт</h6>
+                <Link className='flex ml-4 w-[400px]' href='/'>
+                    <h6 className=' hover:border-b hover:border-black'>← Назад</h6>
                 </Link>
 
                 <section className='flex-grow'>

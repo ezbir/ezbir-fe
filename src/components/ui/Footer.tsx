@@ -12,13 +12,13 @@ const Footer: React.FC = (props) =>{
                     </span>
                 </h1>
             </section>
-            <section className='w-[400px] mt-5'>
-                <h5 className='flex justify-center p-5'>Слідкуй за нами тут:</h5>
-                <ul className='flex justify-between'>
-                    <li><img src="/img/fbWhite.svg" alt=""/></li>
-                    <li><img src="/img/instagramWhite.svg" alt=""/></li>
-                    <li><img src="/img/telegramWhite.svg" alt=""/></li>
-                    <li><img src="/img/twitterWhite.svg" alt=""/></li>
+            <section className='w-full max-w-md'>
+                <h5 className='text-center text-lg mb-4'>Слідкуй за нами тут:</h5>
+                <ul className='flex justify-around space-x-4'>
+                    <li><img className='size-6 md:size-9' src="/img/fbWhite.svg" alt="Facebook"/></li>
+                    <li><img className='size-6 md:size-9' src="/img/instagramWhite.svg" alt="Instagram"/></li>
+                    <li><img className='size-6 md:size-9' src="/img/telegramWhite.svg" alt="Telegram"/></li>
+                    <li><img className='size-6 md:size-9' src="/img/twitterWhite.svg" alt="Twitter"/></li>
                 </ul>
             </section>
         </footer>
