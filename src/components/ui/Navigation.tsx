@@ -27,9 +27,7 @@ const Navigation: React.FC = () => {
                     <li className='py-4'><Link href='/volunteers'>Волонтери</Link></li>
                     <li className='py-4'><Link href='/support'>Підтримка</Link></li>
                     <li className='py-4'><Link href='/profile'>Профіль</Link></li>
-                    {window.sessionStorage.getItem('auth_token') &&
-                        <li className='py-4'><Link href='/setting/account'>Налаштування</Link></li>
-                    }
+                    <li className='py-4'><Link href='/profile/setting/account'>Налаштування</Link></li>
                 </ul>
 
                 <ul className="flex justify-center mt-10">

@@ -63,7 +63,7 @@ const Profile: React.FC = () => {
                         <span className='pl-2 text-xs md:text-base'>{infoAboutYourself}</span>
                     </p>
                 </section>
-                <Link href={'/setting/account'} className={'hidden justify-end md:block'}>
+                <Link href={'/profile/setting/account'} className={'hidden justify-end md:block'}>
                     <img className="size-16" src="/img/setting.svg" alt="settings"/>
                 </Link>
             </section>
