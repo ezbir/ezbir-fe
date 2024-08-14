@@ -9,7 +9,7 @@ interface FAQProps {
 const FAQ: React.FC<FAQProps> = ({title, description}) => {
     const [isVisible, setIsVisible] = useState(false);
 
-    const toggleDescriptionVisibility = () => {
+    const onViewDescription = () => {
         setIsVisible(!isVisible)
     };
 
@@ -17,13 +17,13 @@ const FAQ: React.FC<FAQProps> = ({title, description}) => {
         <section className='w-[80%] flex flex-col mt-3'>
             <section
                 className='flex justify-between items-center bg-gray-200 rounded p-5 cursor-pointer'
-                onClick={toggleDescriptionVisibility}
+                onClick={onViewDescription}
             >
-                <h2>{title}</h2>
+                <h3 className="text-xl md:text-2xl lg:text-3xl">{title}</h3>
                 <div className='mr-4'>{isVisible ? `/\\` : '\\/'}</div>
             </section>
             {isVisible && (
-                <section className='p-5 bg-gray-100'>
+                <section className='p-5 bg-gray-100 text-xs md:text-base'>
                     {description}
                 </section>
             )}

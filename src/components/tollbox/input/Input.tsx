@@ -1,10 +1,10 @@
 import React from "react";
-import {IInput} from "@/components/input/Input.func";
+import {IInput} from "@/components/tollbox/input/Input.func";
 
 const Input: React.FC<IInput> = ({type,register, name, label}) =>{
     return(
         <section className="relative z-0 w-full ml-1 mt-2">
-            <input className='block py-2.5 px-0 w-full text-xl text-gray-900 bg-transparent border-0 border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer'
+            <input className='block py-2.5 px-0 w-full text-base md:text-xl text-gray-900 bg-transparent border-0 border-b-2 border-black appearance-none focus:outline-none focus:ring-0 focus:border-blue-600 peer'
                    id={name}
                    type={type}
                    placeholder=' '

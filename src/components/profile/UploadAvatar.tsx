@@ -1,7 +1,6 @@
 'use client';
 import React, { FormEvent, useState } from "react";
 import Avatar from "antd/es/avatar/avatar";
-import axios from "axios";
 import { useForm } from "react-hook-form";
 import {onUploadAvatar} from "@/components/profile/UploadAvatar.func";
 
@@ -30,8 +29,8 @@ const UploadAvatar: React.FC<IUploadAvatar> = ({ link }) => {
     };
 
     return (
-        <form className="relative size-64">
-            <label className="cursor-pointer size-64" htmlFor="input_avatar_img">
+        <form className="relative size-32 md:size-48 lg:size-64">
+            <label className="cursor-pointer size-32 md:size-48 lg:size-64" htmlFor="input_avatar_img">
                 <input type="file"
                        accept="image/*"
                        className="hidden"
@@ -40,7 +39,15 @@ const UploadAvatar: React.FC<IUploadAvatar> = ({ link }) => {
                        {...register("picture")}
                 />
                 <div className="relative group">
-                    <Avatar shape="square" size={256} icon={<img src={imgUrl} alt="avatar"/>}/>
+                    <div className="hidden lg:block">
+                        <Avatar shape="square" size={256} icon={<img src={imgUrl} alt="avatar"/>}/>
+                    </div>
+                    <div className="hidden md:block lg:hidden">
+                        <Avatar shape="square" size={192} icon={<img src={imgUrl} alt="avatar"/>}/>
+                    </div>
+                    <div className="block md:hidden">
+                        <Avatar shape="square" size={128} icon={<img src={imgUrl} alt="avatar"/>}/>
+                    </div>
                     <div
                         className="absolute rounded-md inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         <span className="text-white text-lg">Загрузити фото</span>

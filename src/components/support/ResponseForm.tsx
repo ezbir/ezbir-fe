@@ -1,29 +1,40 @@
+'use client'
 import React from "react";
-import Button from "@/components/Button";
+import Input from "@/components/tollbox/input/Input";
+import {useForm} from "react-hook-form";
+import TextArea from "@/components/tollbox/textarea/TextArea";
 
-const ResponseForm: React.FC = (props) =>{
+interface IResponseForm {
+    email: string,
+    username: string,
+    message: string,
+}
+
+const ResponseForm: React.FC = () =>{
+    const { register, handleSubmit } = useForm<IResponseForm>();
+
+    const onSubmit = () =>{
+        console.warn("response form")
+    }
+
     return(
         <>
-            <h2 className=''>Залиши свій відгук</h2>
-            <form className='flex flex-col mt-10'>
-                <section className='flex'>
-                    <input className='w-full bg-gray-200 border-black text-2xl p-4 m-1'
-                           type="email"
-                           placeholder='Email*'
+            <h2 className='flex justify-center md:block'>Залиши свій відгук</h2>
+            <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col mt-10'>
 
-                    />
-                    <input className='w-full bg-gray-200 border-black text-2xl p-4 m-1'
-                           type="text"
-                           placeholder='Прізвище та імʼя*'
-
-                    />
+                <section className='flex flex-col md:flex-row'>
+                    <Input type="email" register={register} name="email" label="Електронна пошта: "/>
+                    <Input type="text" register={register} name="username" label="Прізвище та імʼя: "/>
                 </section>
 
-                <textarea className='bg-gray-200 text-2xl p-4 h-[300px] mt-3' name="text"
-                          placeholder="Введіть текст"></textarea>
-                <div className="flex justify-center mt-2">
-                    <Button className='flex justify-center' primary value='Відправити'/>
-                </div>
+                <TextArea register={register} name="feeback" label="Ваш відгук:" />
+
+                <section className='flex justify-center mt-5 md:mt-10'>
+                    <button type='submit'
+                            className="text-xl border-black border-b-2 p-3 w-[200px] flex justify-center hover:scale-110 duration-100">
+                        Надіслати
+                    </button>
+                </section>
             </form>
         </>
 

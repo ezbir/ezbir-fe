@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "@/app/globals.css";
-import Header from "@/components/ui/Header";
 import HeaderV2 from "@/components/ui/HeaderV2";
 import { AuthAside } from "@/components/auth/AuthAside";
 import Footer from "@/components/ui/Footer";
@@ -17,8 +16,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="ua">
-            <body className='bg-[#E7EEF3]'>
-
+            <body>
                 <HeaderV2 />
                 <main className='flex h-[700px]'>
                     {children}

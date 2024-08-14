@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import Select, { StylesConfig } from "react-select";
 import { IFundraiserForm, IFundraiserFormProps } from "@/components/fundraiser/IFundraiser";
 import { options } from "@/components/fundraiser/CreateFundraiserForm";
+import Input from "@/components/tollbox/input/Input";
+import TextArea from "@/components/tollbox/textarea/TextArea";
 
 const customStyles: StylesConfig = {
-    control: (provided, state) => ({
+    control: (provided) => ({
         ...provided,
         width: '100%',
         fontSize: '25px',
@@ -39,10 +41,6 @@ const FundraiserForm: React.FC<IFundraiserFormProps> = ({ initialValues, submit,
         }
     }, [initialValues, values]);
 
-    const inputStyle: string = 'block px-2.5 pb-2.5 pt-5 w-full text-xl text-gray-900 bg-gray-100 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer';
-    const labelStyle: string = 'absolute text-xl text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto';
-
-
     const onSubmit = (data: IFundraiserForm) => {
         submit(data);
     };
@@ -57,54 +55,14 @@ const FundraiserForm: React.FC<IFundraiserFormProps> = ({ initialValues, submit,
 
     return (
         <form>
-            <section className="flex justify-around">
-                <section className="relative z-0 w-full mr-1 mt-2">
-                    <input className={inputStyle}
-                           id="floating_standard"
-                           type="text"
-                           placeholder=' '
-                           {...register("name")}
-                    />
-                    <label htmlFor="floating_standard" className={labelStyle}>
-                        Назва збору:
-                    </label>
-                </section>
-                <section className="relative z-0 w-full ml-1 mt-2">
-                    <input className={inputStyle}
-                           id="floating_standard"
-                           type="text"
-                           placeholder=' '
-                           {...register("amount")}
-                    />
-                    <label htmlFor="floating_standard" className={labelStyle}>
-                        Сума:
-                    </label>
-                </section>
+            <section className="flex flex-col md:flex-row justify-around">
+                <Input type="text" register={register} name="name" label="Назва збору:"/>
+                <Input type="text" register={register} name="amount" label="Сума:"/>
             </section>
-            <section className="relative z-0 mt-2">
-                <input className={inputStyle}
-                       id="floating_standard"
-                       type="text"
-                       placeholder=' '
-                       {...register("jar_link")}
-                />
-                <label htmlFor="floating_standard" className={labelStyle}>
-                    Посилання на банку:
-                </label>
-            </section>
+            <Input type="text" register={register} name="jar_link" label="Посилання на банку:"/>
 
-            <section className="relative z-0 mt-2">
-                <textarea
-                    id='floating_standard'
-                    className='block px-2.5 pb-2.5 pt-5 w-full text-xl text-gray-900 bg-gray-100 dark:bg-gray-700 border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer h-[200px]'
-                    placeholder=' '
-                    {...register("description")}
-                />
-                <label htmlFor='floating_standard' className={labelStyle}>
-                    Опис:
-                </label>
+            <TextArea register={register} name="description" label="Опис:"/>
 
-            </section>
             <section className="relative mt-2">
                 <label className='text-xl'>
                     Категорії:

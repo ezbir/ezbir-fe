@@ -12,7 +12,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ua">
-      <body>{children}</body>
+      <body className="w-full">{children}</body>
     </html>
   )
 }

@@ -2,12 +2,10 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Avatar } from "antd";
 import CreateFundraiser from "@/components/fundraiser/CreateFundraiser";
 import FundraiserCard from "@/components/fundraiser/FundraiserCard";
 import { IFundraiserCard } from "@/components/fundraiser/IFundraiser";
 import Link from "next/link";
-import ChangeableAvatar from "@/components/profile/UploadAvatar";
 import UploadAvatar from "@/components/profile/UploadAvatar";
 
 const Profile: React.FC = () => {
@@ -43,35 +41,33 @@ const Profile: React.FC = () => {
     }, [router]);
 
     if (!isClient) {
-        return <main className='flex flex-col items-center'>Loading...</main>;
+        return <main className='flex flex-col items-center p-4'>Loading...</main>;
     }
 
     return (
-        <main className='flex flex-col items-center'>
-            <section className='flex flex-grow p-4 w-[80%] mt-4'>
-                <section>
+        <main className='flex flex-col items-center p-4'>
+            <section className='flex flex-row md:items-start p-4 w-full md:w-4/5 mt-4'>
+                <section className='flex mb-4 md:mb-0'>
                     <UploadAvatar link={photoUrl!}/>
                 </section>
                 <section className='flex flex-col pl-4 w-full'>
-                    <h3>{username}</h3>
-                    <br />
-                    <p>
+                    <h3 className=' text-lg md:text-2xl font-bold'>{username}</h3>
+                    <p className='mt-2 text-xs md:text-base'>
                         Електронна пошта:
                         <br />
-                        <p className='pl-5'>{email}</p>
+                        <span className='pl-2 text-xs md:text-base'>{email}</span>
                     </p>
-                    <br />
-                    <p>
+                    <p className='mt-2 text-xs md:text-base'>
                         Про себе:
                         <br />
-                        <p className='pl-5'>{infoAboutYourself}</p>
+                        <span className='pl-2 text-xs md:text-base'>{infoAboutYourself}</span>
                     </p>
                 </section>
-                <Link href='/setting/account' className='flex-grow flex justify-end h-full'>
-                    <img src="/img/setting.svg" alt="settings" />
+                <Link href={'/setting/account'} className={'hidden justify-end md:block'}>
+                    <img className="size-16" src="/img/setting.svg" alt="settings"/>
                 </Link>
             </section>
-            <section className='flex flex-col flex-grow items-center p-4 w-[80%]'>
+            <section className='flex flex-col items-center p-4 w-full md:w-4/5'>
                 <CreateFundraiser />
                 <ul className='w-full'>
                     {fundraisersData.map((item: IFundraiserCard) => (

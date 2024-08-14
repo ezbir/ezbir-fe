@@ -3,6 +3,7 @@ import {Button, Drawer, DrawerProps, Space} from "antd";
 import {IFundraiserForm} from "@/components/fundraiser/IFundraiser";
 import FundraiserEditForm from "@/components/fundraiser/FundraiserEditForm";
 import {onEditFundraiser} from "@/components/fundraiser/FundraiserEdit.func";
+import {EditOutlined} from "@ant-design/icons";
 
 
 
@@ -24,11 +25,7 @@ const FundraiserEdit: React.FC<IFundraiserForm> = ({amount, id, name, is_closed,
     };
     return(
         <>
-            <img src="/img/redactIcon.svg"
-                 alt="edit"
-                 className='hover:cursor-pointer'
-                 onClick={showDrawer}
-            />
+            <EditOutlined size={32} onClick={showDrawer} />
             <Drawer
                 title="Редагування збору"
                 placement='bottom'
