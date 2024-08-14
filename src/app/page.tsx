@@ -11,7 +11,8 @@ export default function Home() {
     <>
         <Header/>
         <main>
-            <RussianWarshipRIP/>
+            {/*todo create new RussianRip*/}
+            {/*<RussianWarshipRIP/>*/}
         </main>
         <Footer/>
     </>
