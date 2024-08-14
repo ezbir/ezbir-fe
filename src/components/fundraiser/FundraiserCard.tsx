@@ -24,11 +24,11 @@ const FundraiserCard: React.FC<IFundraiserCard> = ({
 
     return (
         <li className='bg-gray-200 w-full h-auto mt-3 mb-3 p-4 rounded md:h-auto md:flex md:flex-col md:gap-4'>
-            <section className='flex flex-col md:flex-row md:gap-4 h-full'>
+            <section className='relative flex flex-col md:flex-row md:gap-4 h-full'>
                 <section className='flex flex-col md:w-3/4'>
-                    <Link href={`/fundraiser/${id}`}>
+                    <Link className={"flex justify-center md:block"} href={`/fundraiser/${id}`}>
                         <h2 className='hover:text-[#7c7bff] hover:transition transition text-center hidden md:text-left md:block '>{name}</h2>
-                        <h4 className='hover:text-[#7c7bff] hover:transition transition text-center md:hidden '>{name}</h4>
+                        <h4 className='hover:text-[#7c7bff] hover:transition transition w-3/4 text-center md:hidden '>{name}</h4>
                     </Link>
                     <p className='hidden md:block md:text-base'>
                         Користувач: <Link href={`/user/${user_id}`}><strong>{username}</strong></Link>
@@ -47,7 +47,7 @@ const FundraiserCard: React.FC<IFundraiserCard> = ({
                     </h4>
                 </section>
                 {isEdit &&
-                    <section className='mt-4 md:mt-0'>
+                    <section className='absolute top-0 right-0'>
                         <FundraiserEdit
                             amount={amount}
                             name={name}

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from "next/link";
+import {MenuOutlined} from "@ant-design/icons";
 
 const Navigation: React.FC = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,8 +12,8 @@ const Navigation: React.FC = () => {
     return (
         <nav className='flex flex-col md:flex-row items-start'>
             {/* Навігаційна кнопка для мобільних пристроїв */}
-            <button onClick={toggleMenu} className='flex justify-center w-full md:hidden p-2'>
-                → Навігація ←
+            <button onClick={toggleMenu} className='flex justify-end w-full md:hidden p-2'>
+                <MenuOutlined />
             </button>
 
             {/* Модальне меню */}
